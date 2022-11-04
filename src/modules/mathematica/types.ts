@@ -105,7 +105,7 @@ export type Expression<OperatorType = any> = {
    * @param value numerical value at which to evaluate replaced or plugged in variables
    * @returns resulting expression
    */
-  plugin: (symbol: string, value: number) => Expression<OperatorType>;
+  plugin?: (symbol: string, value: number) => Expression<OperatorType>;
   /**
    * Traverses syntax tree and replaces all variables that match `symbol` with `value`. If `f(x,y)=x+y`, `plugin('x', 2)` is the semantic equivalent of `f(2,y)`. Mutates `this` and returns it.
    * @param symbol string representation of the variable to be replaced or plugged in for
@@ -117,7 +117,7 @@ export type Expression<OperatorType = any> = {
    * Traverses syntax tree and attempts to assign a value to each child expression if the composed expressions have definite values. `evaluate()` is the semantic equivalent of pressing the `=` button on a calculator. Does not mutate `this`, returns new expression instead.
    * @returns copy `this`
    */
-  evaluate: () => Expression<OperatorType>;
+  evaluate?: () => Expression<OperatorType>;
   /**
    * Traverses syntax tree and attempts to assign a value to each child expression if the composed expressions have definite values. `evaluateMutate()` is the semantic equivalent of pressing the `=` button on a calculator. Mutates `this` and returns it.
    * @returns `this`
@@ -127,7 +127,7 @@ export type Expression<OperatorType = any> = {
    * Traverses syntax tree and attempts to assign a value to each child expression if the composed expressions have definite values. `evaluateNumber()` is the semantic equivalent of pressing the `=` button on a calculator and saving the resulting number. Does not mutate `this`, returns resulting number (or undefined if answer is indefinite).
    * @returns `this.value`
    */
-  evaluateNumber: () => number | undefined;
+  evaluateNumber?: () => number | undefined;
   /**
    * Traverses syntax tree and attempts to assign a value to each child expression if the composed expressions have definite values. `evaluateNumberMutate()` is the semantic equivalent of pressing the `=` button on a calculator and saving the resulting number. Mutates `this` and returns resulting number (or undefined if answer is indefinite).
    * @returns `this.value`

@@ -18,7 +18,7 @@ const MathematicaPage: React.FC = () => {
   const solve = () => {
     const calculationInput = mathInput;
     const calculationOutput = mathematica.stringToExpression(calculationInput);
-    console.log(calculationOutput);
+    // console.log(calculationOutput);
     // setResult(calculationOutput);
   };
 

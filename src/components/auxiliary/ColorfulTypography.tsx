@@ -12,7 +12,6 @@ type Props = {
 };
 
 const ColorfulTypography: React.FC<Props> = ({ words, fontFamily, spaced }) => {
-  console.log(spaced);
   return (
     <RowStack spacing={spaced ? 1 : 0}>
       {words.map((word) => {

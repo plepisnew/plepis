@@ -12,7 +12,8 @@ const Header: React.FC = () => {
           gap: 3
         }}
       >
-        <Image src="/pfp.png" height={50} alt="pfp" rounded />
+        <Image src="/t-eden.png" height={50} alt="pfp" rounded />
+        {/* <Image src="/pfp.png" height={50} alt="pfp" rounded /> */}
         <Navigation />
         <MetaMenu />
       </Toolbar>

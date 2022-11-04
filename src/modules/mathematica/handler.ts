@@ -6,41 +6,42 @@ const isExpression = (item: Expression | Variable): item is Expression => {
   return (item as Expression).children !== undefined;
 };
 
-const utilities = <OperatorType extends Operator>(
-  operator: OperatorType,
-  exp: Expression,
-  val1: Expression | Variable,
-  val2: Expression | Variable
-) => ({
-  plugin: (symbol: string, value: number) => {
-    isExpression(val1) ? val1.plugin(symbol, value) : (val1.value = value);
-    isExpression(val2) ? val2.plugin(symbol, value) : (val2.value = value);
-    return exp;
-  },
-  evaluate: () => {
-    isExpression(val1) ? val1.evaluate() : null;
-    isExpression(val2) ? val2.evaluate() : null;
-    exp.value =
-      val1.value && val2.value
-        ? operator.calculationFunction([val1.value, val2.value])[0]
-        : undefined;
-    return exp;
-  },
-  evaluateNumber: () => {
-    exp.evaluate();
-    return exp.value;
-  }
-});
+// const utilities = <OperatorType extends Operator<2, 1>>(
+//   operator: OperatorType,
+//   exp: Expression,
+//   val1: Expression | Variable,
+//   val2: Expression | Variable
+// ) => ({
+//   plugin: (symbol: string, value: number) => {
+//     isExpression(val1) ? val1.plugin(symbol, value) : (val1.value = value);
+//     isExpression(val2) ? val2.plugin(symbol, value) : (val2.value = value);
+//     return exp;
+//   },
+//   evaluate: () => {
+//     isExpression(val1) ? val1.evaluate() : null;
+//     isExpression(val2) ? val2.evaluate() : null;
+//     exp.value =
+//       val1.value && val2.value
+//         ? operator.calculationFunction([val1.value, val2.value])[0]
+//         : undefined;
+//     return exp;
+//   },
+//   evaluateNumber: () => {
+//     exp.evaluate();
+//     return exp.value;
+//   }
+// });
 
-const add = (val1: Expression | Variable, val2: Expression | Variable): Expression => {
-  const operator = Operators.Addition;
-  const exp: Expression = {
-    children: [val1, val2],
-    operator,
-    value: undefined
-  };
-  return exp;
-};
+// const add = (val1: Expression | Variable, val2: Expression | Variable): Expression => {
+//   const operator = Operators.Addition;
+//   const exp = {
+//     children: [val1, val2],
+//     operator,
+//     value: undefined,
+// };
+//     // ...utilities(operator, exp, val1, val2)
+//   return exp;
+// };
 
 // step 1:
 
@@ -55,12 +56,14 @@ export const stringToExpression = (input: string): Expression => {
     value: 5
   };
 
-  //   const expression: Expression<any> = {
-  //     children: [x, five],
-  //     operator: Operators.Addition,
-  //     value: undefined,
-  //     plugin() {},
-  //   };
+  const expression: Expression<any> = {
+    children: [x, five],
+    operator: Operators.Addition,
+    value: undefined,
+    plugin(symbol: string, value: number) {
+      return expression;
+    }
+  };
   return expression;
 };
 
