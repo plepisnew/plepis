@@ -1,5 +1,5 @@
-import type { Expression, Operator, Variable } from "./types";
-import { stringToExpression, stringToHTML } from "./handler";
+import type { Expression, Operator, Variable } from './types';
+import { stringToExpression, stringToHTML } from './handler';
 
 type MathematicaContext = {
   stringToExpression: (input: string) => Expression<any>;
@@ -8,7 +8,7 @@ type MathematicaContext = {
 
 const mathematica: MathematicaContext = {
   stringToExpression,
-  stringToHTML,
+  stringToHTML
 };
 
 export { Expression, Operator, Variable };

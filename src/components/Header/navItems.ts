@@ -1,18 +1,20 @@
-export default [
+const navItems = [
   {
-    title: "Home",
-    path: "/",
+    title: 'Home',
+    path: '/'
   },
   {
-    title: "Projects",
-    path: "/projects",
+    title: 'Projects',
+    path: '/projects'
   },
   {
     title: '"what the f**k am I looking at?"',
-    path: "/about",
+    path: '/about'
   },
   {
-    title: "Gallery",
-    path: "/gallery",
-  },
+    title: 'Gallery',
+    path: '/gallery'
+  }
 ];
+
+export default navItems;

@@ -1,5 +1,5 @@
-import Operators from "./operators";
-import { Expression, Variable, Operator } from "./types";
+import Operators from './operators';
+import { Expression, Variable, Operator } from './types';
 // a+b^(x-2)/3
 
 const isExpression = (item: Expression | Variable): item is Expression => {
@@ -29,18 +29,15 @@ const utilities = <OperatorType extends Operator>(
   evaluateNumber: () => {
     exp.evaluate();
     return exp.value;
-  },
+  }
 });
 
-const add = (
-  val1: Expression | Variable,
-  val2: Expression | Variable
-): Expression => {
+const add = (val1: Expression | Variable, val2: Expression | Variable): Expression => {
   const operator = Operators.Addition;
   const exp: Expression = {
     children: [val1, val2],
     operator,
-    value: undefined,
+    value: undefined
   };
   return exp;
 };
@@ -49,13 +46,13 @@ const add = (
 
 export const stringToExpression = (input: string): Expression => {
   const x: Variable = {
-    symbol: "x",
-    value: undefined,
+    symbol: 'x',
+    value: undefined
   };
 
   const five: Variable = {
-    symbol: "5",
-    value: 5,
+    symbol: '5',
+    value: 5
   };
 
   //   const expression: Expression<any> = {
@@ -68,5 +65,5 @@ export const stringToExpression = (input: string): Expression => {
 };
 
 export const stringToHTML = (input: string): string => {
-  return "";
+  return '';
 };

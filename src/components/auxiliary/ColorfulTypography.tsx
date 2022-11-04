@@ -1,6 +1,6 @@
-import { Typography } from "@mui/material";
-import React from "react";
-import RowStack from "./RowStack";
+import { Typography } from '@mui/material';
+import React from 'react';
+import RowStack from './RowStack';
 
 type Props = {
   words: {

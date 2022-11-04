@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   ButtonGroup,
   ToggleButton,
@@ -6,14 +6,14 @@ import {
   Stack,
   Button,
   Typography,
-  Box,
-} from "@mui/material";
-import mathematica from "@/modules/mathematica";
+  Box
+} from '@mui/material';
+import mathematica from '@/modules/mathematica';
 
 const MathematicaPage: React.FC = () => {
   const [isExpression, setIsExpression] = useState<boolean>(true);
-  const [result, setResult] = useState<string>("");
-  const [mathInput, setMathInput] = useState<string>("");
+  const [result, setResult] = useState<string>('');
+  const [mathInput, setMathInput] = useState<string>('');
 
   const solve = () => {
     const calculationInput = mathInput;
@@ -25,7 +25,7 @@ const MathematicaPage: React.FC = () => {
   return (
     <>
       <Stack spacing={3}>
-        <Stack direction="row" sx={{ alignItems: "center" }} spacing={3}>
+        <Stack direction="row" sx={{ alignItems: 'center' }} spacing={3}>
           <Typography fontWeight={600}>Select Type:</Typography>
           <ButtonGroup variant="outlined">
             <ToggleButton
@@ -47,7 +47,7 @@ const MathematicaPage: React.FC = () => {
         <Stack direction="row" spacing={6}>
           <TextField
             sx={{
-              flexGrow: 1,
+              flexGrow: 1
             }}
             placeholder="Input Mathematical expression or equation e.g. x^2=1"
             value={mathInput}
@@ -56,7 +56,7 @@ const MathematicaPage: React.FC = () => {
             variant="contained"
             color="secondary"
             sx={{
-              paddingX: 6,
+              paddingX: 6
             }}
             onClick={solve}
           >

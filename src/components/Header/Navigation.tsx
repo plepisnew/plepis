@@ -1,11 +1,11 @@
-import React from "react";
-import navItems from "./navItems";
-import { prefix, suffix, comma } from "./navDecorator";
-import RowStack from "@/components/auxiliary/RowStack";
-import ColorfulTypography from "@/components/auxiliary/ColorfulTypography";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { Tooltip, Typography } from "@mui/material";
+import React from 'react';
+import navItems from './navItems';
+import { prefix, suffix, comma } from './navDecorator';
+import RowStack from '@/components/auxiliary/RowStack';
+import ColorfulTypography from '@/components/auxiliary/ColorfulTypography';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { Tooltip, Typography } from '@mui/material';
 
 type NavItemProps = {
   title: string;
@@ -21,7 +21,7 @@ const Navigation: React.FC = () => {
     <RowStack
       sx={{
         flexGrow: 1,
-        gap: 1,
+        gap: 1
       }}
     >
       <ColorfulTypography words={prefix} fontFamily="Consolas" spaced />
@@ -52,13 +52,13 @@ const NavItem: React.FC<NavItemProps> = ({ title, path, selected, suffix }) => {
       <Link href={path}>
         <Typography
           sx={{
-            borderTop: selected ? "1px solid white" : "none",
+            borderTop: selected ? '1px solid white' : 'none',
             opacity: selected ? 1 : 0.65,
-            fontFamily: "Consolas",
-            transition: "opacity 400ms",
-            "&:hover": {
-              opacity: selected ? 1 : 0.8,
-            },
+            fontFamily: 'Consolas',
+            transition: 'opacity 400ms',
+            '&:hover': {
+              opacity: selected ? 1 : 0.8
+            }
           }}
         >
           {title}

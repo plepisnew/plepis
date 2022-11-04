@@ -1,12 +1,12 @@
-import { Components, Theme, ThemeOptions } from "@mui/material";
+import { Components, Theme, ThemeOptions } from '@mui/material';
 
-const components: ThemeOptions["components"] = {
+const components: ThemeOptions['components'] = {
   MuiButton: {
     styleOverrides: {
       root: {
-        textTransform: "none",
-      },
-    },
+        textTransform: 'none'
+      }
+    }
   },
   MuiAppBar: {
     styleOverrides: {
@@ -14,11 +14,11 @@ const components: ThemeOptions["components"] = {
         const { main, contrastText } = theme.palette.z4;
         return {
           backgroundColor: main,
-          color: contrastText,
+          color: contrastText
         };
-      },
-    },
-  },
+      }
+    }
+  }
 };
 
 export default components;
