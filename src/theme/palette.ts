@@ -8,6 +8,7 @@ declare module '@mui/material/styles' {
     z2: Palette['primary'];
     z3: Palette['primary'];
     z4: Palette['primary'];
+    z5: Palette['primary'];
   }
 
   interface PaletteOptions {
@@ -16,6 +17,7 @@ declare module '@mui/material/styles' {
     z2: PaletteOptions['primary'];
     z3: PaletteOptions['primary'];
     z4: PaletteOptions['primary'];
+    z5: PaletteOptions['primary'];
   }
 }
 
@@ -39,6 +41,10 @@ const palette: PaletteOptions = {
     contrastText: 'white'
   },
   z4: {
+    main: 'rgb(50, 50, 50)',
+    contrastText: 'white'
+  },
+  z5: {
     main: 'rgb(20, 20, 20)',
     contrastText: 'white'
   }

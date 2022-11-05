@@ -11,7 +11,7 @@ const components: ThemeOptions['components'] = {
   MuiAppBar: {
     styleOverrides: {
       root: ({ theme }) => {
-        const { main, contrastText } = theme.palette.z4;
+        const { main, contrastText } = theme.palette.z5;
         return {
           backgroundColor: main,
           color: contrastText
