@@ -3,7 +3,8 @@ import {
   ThemeOptions,
   ButtonGroupProps,
   ButtonGroupPropsVariantOverrides,
-  Theme
+  Theme,
+  styled as MuiStyled
 } from '@mui/material';
 import { createStyled } from '@mui/system';
 import palette from './palette';
@@ -24,6 +25,6 @@ const defaultTheme: Theme = createTheme({
   components
 } as ThemeOptions);
 
-export const styled = createStyled({ defaultTheme });
-
+// export const styled = createStyled({ defaultTheme });
+export const styled = MuiStyled;
 export default defaultTheme;
