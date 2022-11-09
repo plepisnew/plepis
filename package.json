@@ -3,16 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "open-browser": "start http://localhost:3000",
+    "dev": "npm run open-browser && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "dev-turbo": "next dev --turbo",
+    "start-turbo": "next start --turbo",
     "pretty": "prettier --write ."
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.10.9",
+    "@mui/lab": "^5.0.0-alpha.107",
     "@mui/material": "^5.10.12",
     "@types/node": "18.11.9",
     "@types/react": "18.0.24",

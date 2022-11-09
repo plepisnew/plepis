@@ -41,7 +41,7 @@ const Navigation: React.FC = () => {
           />
         );
       })}
-      <ColorfulTypography words={suffix} fontFamily="Consolas" />
+      <ColorfulTypography words={suffix} fontFamily="Consolas" sx={{}} />
     </RowStack>
   );
 };
@@ -52,7 +52,7 @@ const NavItem: React.FC<NavItemProps> = ({ title, path, selected, suffix }) => {
       <Link href={path}>
         <Typography
           sx={{
-            borderTop: selected ? '1px solid white' : 'none',
+            borderTop: selected ? '1px solid white' : '1px solid rgba(0, 0, 0, 0)',
             opacity: selected ? 1 : 0.65,
             fontFamily: 'Consolas',
             transition: 'opacity 400ms',
