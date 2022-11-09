@@ -6,7 +6,7 @@ import { Divider, Grid, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import React from 'react';
 
-import projects, { Project } from './(projects)';
+import projects, { Project } from './projects';
 import ProjectCard from './ProjectCard';
 
 const staticProjects: Project[] = projects.filter((project) => project.legacy);

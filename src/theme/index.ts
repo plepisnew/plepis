@@ -5,6 +5,7 @@ import {
   ButtonGroupPropsVariantOverrides,
   Theme
 } from '@mui/material';
+import { createStyled } from '@mui/system';
 import palette from './palette';
 import spacing from './spacing';
 import typography from './typography';
@@ -16,11 +17,13 @@ declare module '@mui/material/ButtonGroup' {
   }
 }
 
-const theme: Theme = createTheme({
+const defaultTheme: Theme = createTheme({
   palette,
   spacing,
   typography,
   components
 } as ThemeOptions);
 
-export default theme;
+export const styled = createStyled({ defaultTheme });
+
+export default defaultTheme;

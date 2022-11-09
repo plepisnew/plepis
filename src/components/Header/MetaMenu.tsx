@@ -9,10 +9,10 @@ import {
   Menu,
   MenuItem,
   MenuProps,
-  styled,
   Switch,
   Typography
 } from '@mui/material';
+import { styled } from '@/theme';
 import RowStack from '@/components/auxiliary/RowStack';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';

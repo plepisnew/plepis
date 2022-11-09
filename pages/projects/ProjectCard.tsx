@@ -1,12 +1,14 @@
 import React from 'react';
-import { Project } from './(projects)';
-import { Card, CardContent, CardHeader, CardMedia, Typography, styled, Link } from '@mui/material';
+import { Project } from './projects';
+import { Card, CardContent, CardHeader, CardMedia, Typography, Link } from '@mui/material';
+import { styled } from '@/theme';
 
 type ProjectCardProps = {
   project: Project;
 };
 
 const StyledCard = styled(Card)(({ theme }) => {
+  console.log(theme);
   const { main, contrastText } = theme.palette.z5;
   const { spacing } = theme;
   return {
