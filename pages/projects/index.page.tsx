@@ -2,7 +2,7 @@ import ColumnStack from '@/components/auxiliary/ColumnStack';
 import Image from '@/components/auxiliary/Image';
 import RowStack from '@/components/auxiliary/RowStack';
 import { Masonry } from '@mui/lab';
-import { Divider, Grid, Typography } from '@mui/material';
+import { Divider, Typography } from '@mui/material';
 import { Stack } from '@mui/system';
 import React from 'react';
 
@@ -13,27 +13,14 @@ const staticProjects: Project[] = projects.filter((project) => project.legacy);
 const dynamicProjects: Project[] = projects.filter((project) => !project.legacy);
 
 const createProjectCards = (projects: Project[]): React.ReactElement[] =>
-  projects.map((project) => (
-    // <Grid key={project.title} item xs={12} sm={12} md={6} xl={4} p={2}>
-    // </Grid>
-    <ProjectCard project={project} key={project.title} />
-  ));
+  projects.map((project) => <ProjectCard project={project} key={project.title} />);
 
 const createColumn = (items: Project[]): React.ReactElement => {
   const legacy = (items[0] || { legacy: false }).legacy;
   const imageSource = legacy ? 'projects/sad.png' : 'projects/happy.png';
   const title = legacy ? 'HTML Projects' : 'React Projects';
   return (
-    <ColumnStack
-      alignCenter
-      sx={{
-        width: {
-          xs: '100%',
-          sm: '50%'
-        }
-      }}
-      spacing={2}
-    >
+    <ColumnStack alignCenter dualColumn spacing={2}>
       <RowStack
         alignCenter
         spacing={3}

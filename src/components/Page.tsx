@@ -1,19 +1,24 @@
 import React from 'react';
 import { Box } from '@mui/material';
+import { useRouter } from 'next/router';
 
 type Props = {
   children: React.ReactNode;
 };
 
+// TODO: avoid hardcoding 70px
 const Page: React.FC<Props> = ({ children }) => {
+  const router = useRouter();
+  console.log(router.pathname);
   return (
     <Box
       sx={{
-        minHeight: '100vh'
+        minHeight: 'calc(100vh - 70px)',
+        backgroundColor: 'z0.main'
       }}
       p={6}
     >
-      <Box
+      {/* <Box
         sx={{
           width: '100%',
           height: '10000px',
@@ -25,7 +30,7 @@ const Page: React.FC<Props> = ({ children }) => {
           opacity: 0.9,
           filter: 'brightness(50%)'
         }}
-      />
+      /> */}
       {children}
     </Box>
   );

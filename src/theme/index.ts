@@ -25,6 +25,5 @@ const defaultTheme: Theme = createTheme({
   components
 } as ThemeOptions);
 
-// export const styled = createStyled({ defaultTheme });
 export const styled = MuiStyled;
 export default defaultTheme;

@@ -4,8 +4,6 @@ import {
   Button,
   ButtonProps,
   Divider,
-  ListItemIcon,
-  ListItemText,
   Menu,
   MenuItem,
   MenuProps,
@@ -13,6 +11,7 @@ import {
   Typography
 } from '@mui/material';
 import { styled } from '@/theme';
+import ContactItem from './ContactItem';
 import RowStack from '@/components/auxiliary/RowStack';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
@@ -51,34 +50,6 @@ const StyledButton = styled((props: ButtonProps) => <Button variant="outlined" {
     paddingRight: theme.spacing(1)
   })
 );
-
-type ContactItemProps = {
-  title: string;
-  href?: string;
-  icon: React.ReactElement;
-};
-
-const ContactItem: React.FC<ContactItemProps> = ({ title, href, icon }) => {
-  const contactArr = title.split(' ');
-  const [contactMeta, ...contactData] = contactArr;
-
-  return (
-    <MenuItem
-      sx={{
-        whiteSpace: 'unset'
-      }}
-      onClick={href ? () => window.open(href, '_blank') : undefined}
-    >
-      <ListItemIcon>{icon}</ListItemIcon>
-      <ListItemText>
-        <RowStack spacing={1}>
-          <Typography fontWeight={600}>{contactMeta}</Typography>
-          <Typography>{contactData.join(' ')}</Typography>
-        </RowStack>
-      </ListItemText>
-    </MenuItem>
-  );
-};
 
 const MetaMenu: React.FC = () => {
   const [metaAnchorEl, setMetaAnchorEl] = useState<HTMLElement | null>();

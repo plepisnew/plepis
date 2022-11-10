@@ -7,15 +7,22 @@ type Props = {
   spacing?: number;
   sx?: SxProps;
   alignCenter?: boolean;
+  dualColumn?: boolean;
 };
 
-const ColumnStack: React.FC<Props> = ({ children, spacing, sx, alignCenter }) => {
+const ColumnStack: React.FC<Props> = ({ children, spacing, sx, alignCenter, dualColumn }) => {
   return (
     <Stack
       direction="column"
       spacing={spacing}
       sx={{
         alignItems: alignCenter ? 'center' : undefined,
+        width: dualColumn
+          ? {
+              xs: '100%',
+              sm: '50%'
+            }
+          : undefined,
         ...sx
       }}
     >

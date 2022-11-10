@@ -1,4 +1,4 @@
-import { Components, Theme, ThemeOptions } from '@mui/material';
+import { ThemeOptions } from '@mui/material';
 
 const components: ThemeOptions['components'] = {
   MuiButton: {
@@ -14,8 +14,16 @@ const components: ThemeOptions['components'] = {
         const { main, contrastText } = theme.palette.z5;
         return {
           backgroundColor: main,
-          color: contrastText
+          color: contrastText,
+          height: '70px'
         };
+      }
+    }
+  },
+  MuiToolbar: {
+    styleOverrides: {
+      root: {
+        height: '70px'
       }
     }
   }

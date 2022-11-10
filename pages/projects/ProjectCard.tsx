@@ -8,7 +8,6 @@ type ProjectCardProps = {
 };
 
 const StyledCard = styled(Card)(({ theme }) => {
-  console.log(theme);
   const { main, contrastText } = theme.palette.z5;
   const { spacing } = theme;
   return {

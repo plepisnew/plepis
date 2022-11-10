@@ -14,9 +14,9 @@ const Header: React.FC = () => {
           }}
         >
           <Image src="/t-eden.png" height={50} alt="pfp" rounded />
-          {/* <Image src="/pfp.png" height={50} alt="pfp" rounded /> */}
           <Navigation />
           <MetaMenu />
+          <Image src="/pfp.png" height={50} alt="pfp" rounded />
         </Toolbar>
       </Container>
     </AppBar>
