@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { useRouter } from 'next/router';
+import { headerHeight } from '@/components/Header';
 
 type Props = {
   children: React.ReactNode;
@@ -12,7 +13,7 @@ const Page: React.FC<Props> = ({ children }) => {
   return (
     <Box
       sx={{
-        minHeight: 'calc(100vh - 70px)',
+        minHeight: `calc(100vh - ${headerHeight})`,
         backgroundColor: 'z0.main'
       }}
       p={6}

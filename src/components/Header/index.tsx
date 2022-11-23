@@ -6,15 +6,32 @@ import MetaMenu from './MetaMenu';
 import { useSelector } from '@/hooks/redux';
 import { selectDebug } from '@/store/debugSlice';
 
+export const headerHeight = '80px';
+
 const Header: React.FC = () => {
   const debug = useSelector(selectDebug);
 
   return (
-    <AppBar position="sticky">
-      <Container maxWidth="xl">
+    <AppBar
+      position="sticky"
+      sx={{
+        height: headerHeight,
+        '&': {
+          backgroundColor: debug ? 'header.debugMain' : 'header.main',
+          color: debug ? 'header.debugContrastText' : 'header.contrastText'
+        }
+      }}
+    >
+      <Container
+        maxWidth="xl"
+        sx={{
+          height: '100%'
+        }}
+      >
         <Toolbar
           sx={{
-            gap: 3
+            gap: 3,
+            height: '100%'
           }}
         >
           <Image

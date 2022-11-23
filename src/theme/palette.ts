@@ -1,5 +1,5 @@
 import { Palette, PaletteOptions } from '@mui/material';
-import { pink, lightBlue } from '@mui/material/colors';
+import { pink, lightBlue, blue } from '@mui/material/colors';
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -9,6 +9,12 @@ declare module '@mui/material/styles' {
     z3: Palette['primary'];
     z4: Palette['primary'];
     z5: Palette['primary'];
+    header: {
+      main: string;
+      contrastText: string;
+      debugMain: string;
+      debugContrastText: string;
+    };
   }
 
   interface PaletteOptions {
@@ -18,6 +24,12 @@ declare module '@mui/material/styles' {
     z3: PaletteOptions['primary'];
     z4: PaletteOptions['primary'];
     z5: PaletteOptions['primary'];
+    header: {
+      main: string;
+      contrastText: string;
+      debugMain: string;
+      debugContrastText: string;
+    };
   }
 }
 
@@ -47,6 +59,12 @@ const palette: PaletteOptions = {
   z5: {
     main: 'rgb(20, 20, 20)',
     contrastText: 'white'
+  },
+  header: {
+    main: blue[200],
+    contrastText: 'black',
+    debugMain: 'black',
+    debugContrastText: 'white'
   }
 };
 

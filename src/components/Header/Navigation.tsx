@@ -5,7 +5,7 @@ import RowStack from '@/components/auxiliary/RowStack';
 import ColorfulTypography from '@/components/auxiliary/ColorfulTypography';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Typography } from '@mui/material';
+import { SxProps, Typography } from '@mui/material';
 import { useSelector } from '@/hooks/redux';
 import { selectDebug } from '@/store/debugSlice';
 
@@ -53,7 +53,8 @@ const Navigation: React.FC = () => {
 };
 
 const NavItem: React.FC<NavItemProps> = ({ title, path, selected, suffix, debug }) => {
-  const commonStyle = {
+  const commonStyle: SxProps = {
+    borderWidth: selected ? 1 : 2,
     opacity: selected ? 1 : 0.65,
     transition: 'opacity 400ms',
     '&:hover': {
@@ -61,14 +62,16 @@ const NavItem: React.FC<NavItemProps> = ({ title, path, selected, suffix, debug 
     }
   };
 
-  const normalStyle = {
-    borderBottom: selected ? '1px solid white' : '2px solid rgba(0, 0, 0, 0)',
+  const normalStyle: SxProps = {
+    borderBottomColor: selected ? 'header.contrastText' : 'rgba(69, 69, 69, 0)',
+    borderBottomStyle: 'solid',
     padding: '4px 5px',
     ...commonStyle
   };
 
-  const debugStyle = {
-    border: selected ? '1px solid white' : '2px solid rgba(0, 0, 0, 0)',
+  const debugStyle: SxProps = {
+    borderColor: selected ? 'header.debugContrastText' : 'rgba(69, 69, 69, 0)',
+    borderStyle: 'solid',
     padding: '0 3px',
     borderRightWidth: 4,
     borderTopWidth: 2,

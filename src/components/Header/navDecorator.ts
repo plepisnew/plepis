@@ -32,5 +32,13 @@ export const suffix = [
   {
     text: ';',
     color: 'white'
+  },
+  {
+    text: '',
+    color: 'white'
+  },
+  {
+    text: '// TODO: remove this',
+    color: 'grey'
   }
 ];
