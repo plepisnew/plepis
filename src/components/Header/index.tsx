@@ -3,8 +3,12 @@ import { AppBar, Container, Toolbar, useTheme } from '@mui/material';
 import Navigation from './Navigation';
 import Image from '@/components/auxiliary/Image';
 import MetaMenu from './MetaMenu';
+import { useSelector } from '@/hooks/redux';
+import { selectDebug } from '@/store/debugSlice';
 
 const Header: React.FC = () => {
+  const debug = useSelector(selectDebug);
+
   return (
     <AppBar position="sticky">
       <Container maxWidth="xl">
@@ -13,10 +17,14 @@ const Header: React.FC = () => {
             gap: 3
           }}
         >
-          <Image src="/t-eden.png" height={50} alt="pfp" rounded />
+          <Image
+            src={debug ? `/tarnished-eden.png` : '/tainted_eden.png'}
+            width={45}
+            alt="pfp"
+            rounded
+          />
           <Navigation />
           <MetaMenu />
-          <Image src="/pfp.png" height={50} alt="pfp" rounded />
         </Toolbar>
       </Container>
     </AppBar>

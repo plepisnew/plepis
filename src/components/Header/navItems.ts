@@ -1,18 +1,22 @@
 const navItems = [
   {
-    title: 'Home',
+    title: 'HOME',
+    debugTitle: 'h̶̰́̈́o̴̩̯͎̓̑̀m̸͇͖̫̎ë̷͈́',
     path: '/'
   },
   {
-    title: 'Projects',
+    title: 'PROJECTS',
+    debugTitle: 'pro/j\\ects',
     path: '/projects'
   },
   {
-    title: '"what the f**k am I looking at?"',
+    title: 'ABOUT',
+    debugTitle: '"wtf am I looking at?"',
     path: '/about'
   },
   {
-    title: 'Gallery',
+    title: 'GALLERY',
+    debugTitle: 'Gallery',
     path: '/gallery'
   }
 ];

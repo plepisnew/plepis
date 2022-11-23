@@ -8,8 +8,11 @@ import {
   MenuItem,
   MenuProps,
   Switch,
-  Typography
+  Typography,
+  FormControlLabel,
+  SxProps
 } from '@mui/material';
+import { green } from '@mui/material/colors';
 import { styled } from '@/theme';
 import ContactItem from './ContactItem';
 import RowStack from '@/components/auxiliary/RowStack';
@@ -17,6 +20,8 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { useDispatch, useSelector } from '@/hooks/redux';
+import { selectDebug, setDebug } from '@/store/debugSlice';
 
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
@@ -52,28 +57,45 @@ const StyledButton = styled((props: ButtonProps) => <Button variant="outlined" {
 );
 
 const MetaMenu: React.FC = () => {
+  const debug = useSelector(selectDebug);
+  const dispatch = useDispatch();
+
   const [metaAnchorEl, setMetaAnchorEl] = useState<HTMLElement | null>();
   const [infraAnchorEl, setInfraAnchorEl] = useState<HTMLElement | null>();
-
   const handleMetaClose = () => setMetaAnchorEl(null);
   const handleInfraClose = () => setInfraAnchorEl(null);
-
   const handleMeta = (e: React.MouseEvent<HTMLElement>) => setMetaAnchorEl(e.currentTarget);
   const handleInfra = (e: React.MouseEvent<HTMLElement>) => setInfraAnchorEl(e.currentTarget);
-
   const metaOpen = Boolean(metaAnchorEl);
   const infraOpen = Boolean(infraAnchorEl);
 
+  const debugStyle: SxProps = {
+    color: 'white',
+    borderColor: 'white',
+    fontFamily: 'Consolas',
+    '&:hover': {
+      borderColor: 'white'
+    }
+  };
+
   return (
     <RowStack spacing={2}>
-      <StyledButton color="primary" onClick={handleMeta}>
-        Meta data <ArrowDropDownIcon />
-      </StyledButton>
       <StyledMenu open={metaOpen} anchorEl={metaAnchorEl} onClose={handleMetaClose}>
         <MenuItem disableRipple>
           <RowStack alignCenter>
-            <Typography>Debug Mode</Typography>
-            <Switch />
+            <FormControlLabel
+              control={
+                <Switch
+                  color="secondary"
+                  checked={debug}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    dispatch(setDebug(e.target.checked))
+                  }
+                />
+              }
+              label="Debug Mode"
+              labelPlacement="start"
+            />
           </RowStack>
         </MenuItem>
         <Divider />
@@ -102,11 +124,34 @@ const MetaMenu: React.FC = () => {
           }}
           disableRipple
         >
-          What were you even expecting from &quot;Infra Data&quot; lol
+          {/* eslint-disable @next/next/no-img-element */}
+          <img
+            src="/images/t-eden.gif"
+            alt="tarnished eden"
+            width="100%"
+            style={{
+              borderRadius: 3
+            }}
+          />
         </MenuItem>
       </StyledMenu>
-      <StyledButton color="secondary" onClick={handleInfra}>
-        Infra data <ArrowDropDownIcon />
+      <StyledButton color="primary" onClick={handleMeta} sx={debug ? debugStyle : {}}>
+        Meta data{' '}
+        <ArrowDropDownIcon
+          sx={{
+            transform: metaOpen ? 'rotate(180deg)' : '',
+            transition: 'transform 200ms'
+          }}
+        />
+      </StyledButton>
+      <StyledButton color="secondary" onClick={handleInfra} sx={debug ? debugStyle : {}}>
+        Infra data{' '}
+        <ArrowDropDownIcon
+          sx={{
+            transform: infraOpen ? 'rotate(180deg)' : '',
+            transition: 'transform 200ms'
+          }}
+        />
       </StyledButton>
     </RowStack>
   );

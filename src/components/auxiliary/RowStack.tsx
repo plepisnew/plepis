@@ -1,5 +1,4 @@
 import { Stack, SxProps } from '@mui/material';
-
 import React from 'react';
 
 type Props = {

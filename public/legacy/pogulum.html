@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pogulum</title>
+    <style>
+        .fetched-clips {
+            height: 50%;
+            width: 100%;
+        }
+
+        .scroll-bg {
+            /* background: white; */
+            height: 100%;
+            overflow: hidden;
+            overflow-y: scroll;
+        }
+
+        .scroll-bg::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scroll {
+            padding: 10px;
+        }
+
+        .scroll-page {
+            background-color: rgb(13, 71, 161);
+            color: white;
+            font-family: Rubik;
+            border: none;
+            /* border-radius: 3px; */
+            padding: 5px 20px 5px 20px;
+            box-shadow: 1px 1px 3px rgb(0, 0, 0, 0.7);
+            cursor: pointer;
+            margin-bottom: 8px;
+            margin-top: 5px;
+            transition: opacity 0.5s;
+            /* margin-left: 10px;
+            margin-right: 10px; */
+        }
+
+        #move-left {
+            border-top-left-radius: 2px;
+            border-bottom-left-radius: 2px;
+        }
+
+        #move-right {
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px;
+        }
+
+        #move-left:hover {
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+            opacity: 0.85;
+        }
+
+        #move-right:hover {
+            border-top-right-radius: 12px;
+            border-bottom-right-radius: 12px;
+            opacity: 0.85;
+        }
+
+        .scroll-page:active {
+            /* box-shadow: none; */
+        }
+
+        .page-mover {
+            background: rgb(30, 136, 229);
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .title-filter {
+            margin-right: 30px;
+            margin: 0;
+            padding-top: 0px;
+        }
+
+        .hide {
+            display: none !important;
+        }
+
+        .title-filter {
+            margin-right: 10px;
+            margin-left: 4px;
+            height: 20px;
+            padding-top: 3px;
+        }
+
+        .clip-scroller {
+            height: 100%;
+        }
+
+        .buttons {
+            right: 0;
+            width: 10%;
+        }
+
+        .edit-panel {
+            height: 40%;
+            /* width: 80%; */
+            width: 100%;
+            margin-left: 10px;
+            display: inline-block;
+        }
+
+        .draggable {
+            cursor: move;
+        }
+
+        .draggable.dragging {
+            opacity: 0.5;
+        }
+
+        .selected-videos {
+            width: 80%;
+            height: 100%;
+            overflow-y: scroll;
+            display: inline-block;
+        }
+
+        .selected-videos::-webkit-scrollbar {
+            display: none;
+        }
+
+        .divider {
+            width: 100%;
+            /* height: 5%; */
+            background: rgb(30, 136, 229);
+            display: flex;
+            justify-content: center;
+            padding-bottom: 5px;
+            padding-top: 5px;
+        }
+
+        .stringed-clips {
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .buttons {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .download {
+            margin-left: 5px;
+            margin-top: 10px;
+            font-family: Rubik;
+            border-radius: 2px;
+            font-size: 18px;
+            border: none;
+            background-color: rgb(57, 73, 171);
+            color: white;
+            cursor: pointer;
+            padding-left: 10px;
+            padding-right: 10px;
+            box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.6);
+            transition: opacity 0.4s;
+            width: 120px;
+        }
+
+        .download:hover {
+            opacity: 0.8;
+        }
+
+        .download:active {
+            box-shadow: 1px 1px 4px rgb(0, 0, 0, 0.6);
+        }
+
+        .icon-container {
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: row;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .icon-image {
+            border-radius: 17px;
+            box-shadow: 2px 2px 4px rgba(20, 20, 20, 0.5);
+            height: 60px;
+
+        }
+
+        .github-image {
+            width: 60px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            height: 100%;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .left-panel,
+        .right-panel {
+            display: inline-block;
+            width: 50%;
+            height: 100%;
+            position: absolute;
+        }
+
+        .left-panel {
+            background-image: linear-gradient(rgb(25, 118, 210), rgb(33, 150, 243));
+            left: 0;
+        }
+
+        .right-panel {
+            background-image: linear-gradient(rgb(33, 150, 243), rgb(25, 118, 210));
+            right: 0;
+        }
+
+        .left-panel,
+        .right-panel,
+        .fetched-clips {
+            border: 1px solid rgb(13, 71, 161);
+        }
+
+        .fetched-clips {
+            border-left: none;
+        }
+
+        .about,
+        .usage {
+            font-family: Rubik;
+            color: white;
+            font-size: 18px;
+        }
+
+        .about-container,
+        .usage-container {
+            margin-bottom: 10px;
+            margin-left: 20px;
+        }
+
+        .emph {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .about-container {
+            display: inline-block;
+        }
+
+        .tooltip {
+            position: fixed;
+            background: linear-gradient(rgb(33, 150, 243), rgb(25, 118, 210));
+            /* background: blue; */
+            right: 450px;
+            right: calc(50vw - 300px);
+            top: 150px;
+            padding-left: 40px;
+            padding-right: 40px;
+            border-width: 2px;
+            border-color: black;
+            border-style: solid;
+            overflow: hidden;
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            height: 70px;
+            transition: width 0.5s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            transition: right 0.8s;
+        }
+
+        .tooltip:hover {
+            right: 750px;
+            right: calc(50vw - 100px);
+        }
+
+        .twitch-id,
+        .twitch-token,
+        .youtube-id,
+        .youtube-token {
+            /* margin-top: 3px; */
+            width: 120px;
+            display: inline-block;
+            font-size: 13px;
+        }
+
+        .user-container {}
+
+        .user-input {
+            font-family: Rubik;
+            font-size: 18px;
+            border-radius: 7px;
+            border-style: solid;
+            border-width: 2px;
+            border-color: rgb(57, 73, 171);
+            background-color: rgb(179, 229, 252);
+            padding-left: 8px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            width: 170px;
+            color: rgb(74, 20, 140);
+            transition: background-color 0.5s;
+        }
+
+        .user-input:hover {
+            background-color: rgb(225, 245, 254);
+        }
+
+        .input-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-evenly;
+            margin-bottom: 20px
+        }
+
+        .search-button {
+            font-family: Rubik;
+            border-radius: 2px;
+            font-size: 18px;
+            border: none;
+            background-color: rgb(57, 73, 171);
+            color: white;
+            cursor: pointer;
+            padding-left: 10px;
+            padding-right: 10px;
+            box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.6);
+            transition: opacity 0.4s;
+        }
+
+        .search-button:hover {
+            opacity: 0.8;
+        }
+
+        .search-button:active {
+            box-shadow: 1px 1px 4px rgb(0, 0, 0, 0.6);
+        }
+
+        .game-selection {
+            display: inline-block;
+            margin-left: 12px;
+            width: 70%;
+        }
+
+        .channel-selection {
+            display: inline-block;
+            width: 25%;
+        }
+
+        .game-grid {
+            grid-template-columns: 100px, 100px;
+        }
+
+        .clickable-game {
+            border-radius: 10px;
+            width: 80px;
+            cursor: pointer;
+            opacity: 0.9;
+            box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+            transition: opacity 0.5s;
+            transition: border-radius 0.5s;
+        }
+
+        .clickable-game:active {
+            box-shadow: none;
+        }
+
+        .clickable-game:hover {
+            border-radius: 18px;
+            opacity: 1;
+        }
+
+        .popular-games,
+        .popular-channels {
+            font-family: Rubik;
+            color: white;
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .popular-games {
+            grid-column-start: 6;
+        }
+
+        .popular-channels {
+            grid-column-start: 13;
+        }
+
+        .popular-paragraphs {
+            display: grid;
+            grid-template-columns: repeat(10px)
+        }
+
+        .clickable-channel {
+            width: 78px;
+            border-radius: 15px;
+            cursor: pointer;
+            opacity: 0.9;
+            box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.6);
+            transition: border-radius 0.5s;
+            transition: opacity 0.5s;
+            margin-left: 10px;
+            transition: border-radius 0.8s;
+        }
+
+        .clickable-channel:hover {
+            opacity: 1;
+            border-radius: 50px;
+        }
+
+        .clickable-channel:active {
+            box-shadow: none;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Rubik:wght@300;400;500&family=Source+Sans+Pro:wght@200;300;400;600&display=swap"
+        rel="stylesheet" />
+</head>
+
+<body style="overflow: hidden">
+    <div class="left-panel">
+        <div class="icon-container">
+            <img class="icon-image" src="/images/legacy/tcs.png" />
+            <a href="http://github.com/plepisnew/pogulum" target="_blank">
+                <img class="github-image" src="/images/legacy/github.png" />
+            </a>
+        </div>
+        <div class="about-container">
+            <p class="about">
+                <span class="emph">About:</span> Twitch Clip finder, filterer,
+                concatenator, uploader.
+            </p>
+            <p class="usage">
+                <span class="emph">How to use:</span>
+            </p>
+            <p class="usage">
+                1. Find clips based on Category, Twitch Username OR Clip ID
+            </p>
+            <p class="usage">2. Scroll through the chasm of clips</p>
+            <p class="usage">3. Select clips to merge</p>
+            <p class="usage">4. Download .mp4 file OR upload to YouTube</p>
+        </div>
+        <div class="user-container">
+            <div class="input-container">
+                <input id="category-input" class="user-input" type="text" placeholder="Category" />
+                <input id="username-input" class="user-input" type="text" placeholder="Twitch Username" />
+                <input id="clip-input" class="user-input" type="text" placeholder="Clip ID" />
+                <button id="find-clips" class="search-button">Find clips</button>
+            </div>
+
+            <div class="popular-paragraphs">
+                <p class="popular-games">Popular Games</p>
+                <p class="popular-channels">Popular Channels</p>
+            </div>
+
+            <div class="game-selection">
+                <div class="game-grid">
+                    <img class="clickable-game" id="chatting" src="/images/legacy/chatting.jpg" />
+                    <img class="clickable-game" id="fortnite" src="/images/legacy/fortnite.jpg" />
+                    <img class="clickable-game" id="apex" src="/images/legacy/apex-legends.jpg" />
+                    <img class="clickable-game" id="elden" src="/images/legacy/elden-ring.jpg" />
+                    <img class="clickable-game" id="hearthstone" src="/images/legacy/hearthstone.jpg" />
+                    <img class="clickable-game" id="lol" src="/images/legacy/lol.jpg" />
+                    <img class="clickable-game" id="lost" src="/images/legacy/lost-ark.jpg" />
+                    <img class="clickable-game" id="minecraft" src="/images/legacy/minecraft.jpg" />
+                    <img class="clickable-game" id="valorant" src="/images/legacy/valorant.jpg" />
+                    <img class="clickable-game" id="amogus" src="/images/legacy/amogus.jpg" />
+                    <img class="clickable-game" id="csgo" src="/images/legacy/csgo.jpg" />
+                    <img class="clickable-game" id="tft" src="/images/legacy/tft.jpg" />
+                    <img class="clickable-game" id="fifa" src="/images/legacy/fifa.jpg" />
+                    <img class="clickable-game" id="gtav" src="/images/legacy/gtav.jpg" />
+                    <img class="clickable-game" id="yugioh" src="/images/legacy/yugioh.jpg" />
+                    <img class="clickable-game" id="dbd" src="/images/legacy/dbd.jpg" />
+                    <img class="clickable-game" id="overwatch" src="/images/legacy/overwatch.jpg" />
+                    <img class="clickable-game" id="genshin" src="/images/legacy/genshin.jpg" />
+                </div>
+            </div>
+            <div class="channel-selection">
+                <div style="display: inline-block">
+                    <div class="channel-grid">
+                        <img class="clickable-channel" id="anomaly" src="/images/legacy/anomaly.jpg" />
+                        <img class="clickable-channel" id="brownman" src="/images/legacy/brownman.jpg" />
+                        <img class="clickable-channel" id="ninja" src="/images/legacy/ninja.jpg" />
+                        <img class="clickable-channel" id="shroud" src="/images/legacy/shroud.png" />
+                        <img class="clickable-channel" id="soda" src="/images/legacy/soda.png" />
+                        <img class="clickable-channel" id="summit" src="/images/legacy/summit.jpg" />
+                        <img class="clickable-channel" id="tyler" src="/images/legacy/tyler.png" />
+                        <img class="clickable-channel" id="xqc" src="/images/legacy/xqc.jpeg" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tooltip">
+        <div class="twitch-box">
+            <input type="text" class="twitch-id user-input" placeholder="Twitch ID" />
+            <input type="text" class="twitch-token user-input" placeholder="Twitch Token" />
+        </div>
+        <div class="youtube-box">
+            <input type="text" class="youtube-id user-input" placeholder="YouTube ID" />
+            <input type="text" class="youtube-token user-input" placeholder="YouTube Token" />
+        </div>
+    </div>
+    <div class="right-panel">
+        <div class="page-mover" style="display: flex; justify-content: center">
+            <!-- <input type="checkbox" class="toggle-edit" />Edit mode -->
+            <input type="text" class="title-filter user-input" placeholder="Clip Title" />
+            <button id="move-left" class="scroll-page">Scroll Left</button>
+            <button id="move-right" class="scroll-page">Scroll Right</button>
+        </div>
+        <div class="fetched-clips">
+            <div class="scroll-bg">
+                <div class="scroll drag-container" id="clip-scroller"></div>
+            </div>
+        </div>
+        <div class="divider">
+            <p class="about"><span class="emph">Selected Clips:</span></p>
+        </div>
+        <div class="edit-panel">
+            <div class="selected-videos drag-container"></div>
+            <div class="buttons">
+                <button class="download video">Download MP4</button>
+                <button class="download upload">Upload to YouTube</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const DEFAULT_TOKEN = 'fyu0aj0hexqkl66qukyr3rr4jthft4'
+    const DEFAULT_ID = '0kvjan2jt8lf8qkhjolubt5ggih7ip'
+
+    const BASE_URL = "https://api.twitch.tv/"
+    const CLIP_RES = "helix/clips"
+    const PROXY = "";
+    var TOKEN = 'fyu0aj0hexqkl66qukyr3rr4jthft4';
+    var CLIENT_ID = '0kvjan2jt8lf8qkhjolubt5ggih7ip';
+    let clip_count = 10;
+
+    const DB_URL = "";
+
+    // ELEMENTS
+
+    const categoryInput = document.getElementById("category-input");
+    const usernameInput = document.getElementById("username-input")
+    const clipInput = document.getElementById("clip-input")
+
+    const search_button = document.getElementById("find-clips")
+    const left_button = document.getElementById("move-left")
+    const right_button = document.getElementById("move-right")
+
+    const twitch_token_input = document.querySelector(".twitch-token")
+    const twitch_id_input = document.querySelector(".twitch-id")
+    const youtube_token_input = document.querySelector(".youtube-token")
+    const youtube_id_input = document.querySelector(".youtube-id")
+    // REST API 
+
+    const REST_URL = "http://pogulum-env.eba-pa8ak5bb.eu-north-1.elasticbeanstalk.com"
+
+    const USER_RESOURCE = "/api/user"
+    const GAME_RESOURCE = "/api/game"
+    const CLIP_RESOURCE = "/api/clip"
+
+    const USER_URL = REST_URL + USER_RESOURCE
+    const GAME_URL = REST_URL + GAME_RESOURCE
+    const CLIP_URL = REST_URL + CLIP_RESOURCE
+
+    // ACTIONS
+
+    twitch_token_input.oninput = () => {
+        TOKEN = twitch_token_input.value;
+    }
+
+    twitch_id_input.oninput = () => {
+        CLIENT_ID = twitch_id_input.value;
+    }
+
+    // USER ARGUMENTS AND PAGINATION
+
+    const page = {
+        current_cursor: '',
+        cursors: [''],
+        current_pointer: 0
+    }
+
+    const user_args = {
+        game_id: '',
+        broadcaster_id: '',
+        clip_id: ''
+    }
+
+    const fetchClipsOnClick = function () {
+
+        TOKEN = TOKEN == "" ? DEFAULT_TOKEN : TOKEN;
+        CLIENT_ID = CLIENT_ID == "" ? DEFAULT_ID : CLIENT_ID;
+
+        user_args.game_id = ''
+        user_args.broadcaster_id = ''
+        user_args.clip_id = ''
+
+        let category = categoryInput.value;
+        let username = usernameInput.value;
+        let clip = clipInput.value;
+        user_args.clip_id = clip;
+
+        console.log("Searching for clip with category:", category, "streamed by:", username, "and clip ID:", clip);
+
+        document.getElementById('clip-scroller').replaceChildren()
+
+        getCategory(category)
+            .then(() => getUser(username))
+            .then(() => getClipSuffix(user_args))
+            .then(params => getData(CLIP_RES, params, 'normal'))
+            .then(arr => arr.filter(matchesInput))
+            .then(arr => appendClips(arr))
+
+    }
+
+    const matchesInput = function (clip) {
+        return (clip.broadcaster_id == user_args.broadcaster_id || user_args.broadcaster_id == "") &&
+            (clip.game_id == user_args.game_id || user_args.game_id == "")
+    }
+
+    const queryParams = function () {
+        let args = Array.from(arguments);
+        if (args.length % 2 != 0) throw "Query Parameters must be key-value pairs!"
+        return args
+    }
+
+    const parameterSuffix = function (arr) {
+        let suffix = "?" + arr[0] + "=" + arr[1]
+        for (let i = 2; i < arr.length; i += 2) {
+            suffix += "&" + arr[i] + "=" + arr[i + 1];
+        }
+        return suffix;
+    }
+
+    const twitchGetRequest = function (resource, params, type) {
+
+        let suffix;
+        if (type == 'right') {
+            suffix = page.cursors[page.current_pointer]
+        } else if (type == 'left') {
+            suffix = page.cursors[page.current_pointer >= 2 ? page.current_pointer - 2 : 0]
+        } else if (type == 'normal') {
+            suffix = ""
+            page.current_pointer = 0
+            page.current_cursor = ""
+            page.cursors = [""]
+        }
+
+        let url = BASE_URL + resource + parameterSuffix(params) + "&first=" + clip_count + "&after=" + suffix;
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest()
+            xhr.open('GET', url)
+            xhr.responseType = 'json'
+            xhr.setRequestHeader('Client-Id', CLIENT_ID)
+            xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN)
+            xhr.onload = () => {
+                resolve(xhr.response)
+            }
+            xhr.send()
+        })
+
+    }
+
+    const getData = (resource, params, type) => {
+        return new Promise((resolve, reject) => {
+            twitchGetRequest(resource, params, type)
+                .then(res => {
+                    const { data, pagination } = res
+
+                    // console.log(data)
+                    if (type == 'right') {
+                        page.current_cursor = pagination.cursor
+                        if (page.current_pointer + 1 == page.cursors.length) {
+                            console.log("Pushing to array")
+                            page.cursors.push(pagination.cursor)
+                        }
+                        page.current_pointer++
+                    } else if (type == 'left') {
+                        page.current_pointer = page.current_pointer >= 2 ? page.current_pointer - 1 : 1;
+                        page.current_cursor = pagination.cursor
+                    } else if (type == 'normal') {
+                        page.current_pointer = 1
+                        page.current_cursor = pagination.cursor
+                        page.cursors.push(pagination.cursor)
+                    }
+                    console.log("Pagination:")
+                    console.log(page)
+
+                    resolve(data)
+                })
+        })
+    }
+
+    const getCategory = (name) => {
+        return new Promise((resolve, reject) => {
+            if (name == '') {
+                resolve()
+                return
+            }
+            twitchGetRequest('helix/games', queryParams('name', name), null)
+                .then(res => {
+                    const { data } = res
+                    try {
+                        user_args.game_id = data[0].id
+                        httpPost(GAME_URL, data[0])
+                    } catch (err) {
+                        console.log("Invalid category")
+                    }
+                    resolve()
+                })
+        })
+
+    }
+
+    const getUser = (login) => {
+        return new Promise((resolve, reject) => {
+            if (login == '') {
+                resolve()
+                return
+            }
+            twitchGetRequest('helix/users', queryParams('login', login), null)
+                .then(res => {
+                    const { data } = res
+                    user_args.broadcaster_id = data[0].id
+                    httpPost(USER_URL, data[0])
+                    resolve()
+                })
+        })
+    }
+
+    const getClipSuffix = (args) => {
+        return new Promise((resolve, reject) => {
+            console.log("User args:")
+            console.log(args)
+            if (args.clip_id != '') {
+                resolve(queryParams('id', args.clip_id))
+            } else if (args.broadcaster_id != '') {
+                resolve(queryParams('broadcaster_id', args.broadcaster_id))
+            } else if (args.game_id != '') {
+                resolve(queryParams('game_id', args.game_id))
+            }
+        })
+    }
+
+    const appendClip = (clip) => {
+
+        let div = document.createElement('div')
+        div.innerHTML =
+
+            `
+            <div class="object draggable" draggable="true">
+                            <div class="thumbnail-div">
+                                <a href="${clip.url}" target="_blank">
+                                <img src="${clip.thumbnail_url}" alt="" class="thumbnail"></a>
+                            </div>
+                            <div class="clip-metadata">
+                                <p class="clip-title">${clip.title}</p>
+                                <p class="view-count">&middot; ${clip.view_count} views
+                                </p>
+                                <p class="clip-author">Streamed by ${clip.broadcaster_name} &middot; Duration: ${clip.duration} s</p>
+                                <p class="clip-id">Clip ID: ${clip.id}</p>
+                            </div>
+                            <style>
+                                .object {
+                                    overflow: hidden;
+                                    background: rgb(13, 71, 161);
+                                    margin-bottom: 10px;
+                                    border-radius: 7px;
+                                    box-shadow: 0px 0px 3px rgb(0, 0, 0, 0.9);
+                                    width: 95%;
+                                    transition: width 0.5s;
+                                    display: grid;
+                                    grid-template-columns: auto 1fr;
+                                }
+                                .object:hover {
+                                    width: 100%;
+                                }
+                                .thumbnail {
+                                    height: 66px;
+                                    vertical-align: top;
+                                }
+                                .thumbnail-div {
+                                    display: inline-block;
+                                    overflow: hidden;
+                                    vertical-align: top;
+                                    border-right: 1px solid black;
+                                }
+                                .clip-metadata {
+                                    padding-top: 3px;
+                                    padding-bottom: 3px;
+                                    height: 60px;
+                                    margin-left: 5px;
+                                    display: inline-block;
+                                    vertical-align: top;
+                                    
+                                    overflow-y: scroll;
+                                }
+                                .clip-metadata::-webkit-scrollbar {
+                                    display: none;
+                                }
+                                .clip-title,
+                                .view-count,
+                                .clip-author,
+                                .clip-id {
+                                    font-family: Rubik;
+                                    color: white;
+                                    font-weight: 200;
+                                }
+                                .clip-title {
+                                    display: inline-block;
+                                    font-weight: 500;
+                                }
+                                .view-count {
+                                    display: inline-block;
+                                }
+                                .clip-author {
+                                }
+                                .clip-id {
+                                }
+                            </style>
+                        </div>
+            `
+        document.getElementById('clip-scroller').appendChild(div)
+    }
+
+    search_button.onclick = fetchClipsOnClick;
+
+    left_button.onclick = () => {
+        console.log("Moving pagination up (left)")
+        document.getElementById('clip-scroller').replaceChildren()
+        getClipSuffix(user_args)
+            .then(params => getData(CLIP_RES, params, 'left'))
+            .then(arr => arr.filter(matchesInput))
+            .then(arr => appendClips(arr))
+    }
+
+    right_button.onclick = () => {
+        console.log("Moving pagination down (right)")
+        document.getElementById('clip-scroller').replaceChildren()
+        getClipSuffix(user_args)
+            .then(params => getData(CLIP_RES, params, 'right'))
+            .then(arr => arr.filter(matchesInput))
+            .then(arr => appendClips(arr))
+    }
+
+    document.querySelector(".download.video").onclick = () => {
+        const stringedClips = [...document.querySelectorAll(".stringed-clips")]
+        stringedClips.forEach(clip => {
+            // clip.children[1].children[3].innerText.split('Clip ID: ')[1]
+            let source_image = clip.querySelector('.thumbnail').getAttribute('src')
+            let source_id = source_image.split('.tv/')[1].split('-preview')[0]
+            let source = `https://clips-media-assets2.twitch.tv/${source_id}.mp4`
+            console.log(source)
+        })
+    }
+
+    const httpPost = (url, body) => {
+        console.log("POST " + url)
+        console.log(body)
+        fetch(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'mode': 'no-cors'
+            },
+            method: 'POST',
+            body: JSON.stringify(body)
+        })
+            .then(res => res.json())
+            .then(res => {
+                console.log("Response:")
+                console.log(res)
+            })
+    }
+
+    const setDraggables = () => {
+        const draggables = document.querySelectorAll(".draggable")
+        const containers = document.querySelectorAll(".drag-container")
+
+        draggables.forEach(draggable => {
+            draggable.addEventListener('dragstart', () => {
+                draggable.classList.add('dragging')
+            })
+            draggable.addEventListener('dragend', () => {
+                draggable.classList.remove('dragging')
+            })
+        })
+
+        containers.forEach(container => {
+            container.addEventListener('dragover', e => {
+                e.preventDefault()
+                const afterElement = getDragAfterElement(container, e.clientY)
+                const draggable = document.querySelector('.dragging')
+                if (afterElement == null) {
+                    container.appendChild(draggable)
+                } else {
+                    if (container.contains(afterElement)) {
+                        container.insertBefore(draggable, afterElement)
+                    }
+
+                }
+                if (container == containers[0]) {
+                    draggable.classList.remove('stringed-clips')
+                } else {
+                    draggable.classList.add('stringed-clips')
+                }
+
+            })
+        })
+
+        function getDragAfterElement(container, y) {
+            const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')]
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect()
+                const offset = y - box.top - box.height / 2
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child }
+                } else {
+                    return closest
+                }
+            }, { offset: Number.NEGATIVE_INFINITY }).element
+
+        }
+    }
+
+    const appendClips = (arr) => {
+        arr.forEach(clip => appendClip(clip))
+        setDraggables()
+    }
+
+    appendClip({
+        title: "Totally legit clip",
+        url: "https://github.com/plepisnew/pogulum",
+        thumbnail_url: "https://i.natgeofe.com/k/7ce14b7f-df35-4881-95ae-650bce0adf4d/mallard-male-standing_3x2.jpg",
+        broadcaster_name: "ansishihi & E-Val & Soundharya",
+        duration: 1209600,
+        view_count: 1337,
+        id: "twitch-clip-scraper"
+    })
+
+    const caseSensitive = false
+
+    const title_input = document.querySelector(".title-filter")
+
+    title_input.oninput = () => {
+        const objectElements = document.querySelectorAll(".object:not(.stringed-clips)")
+        var filterables = [...objectElements]
+        filterables.forEach(element => {
+            element.classList.remove("hide")
+
+            let inputContent = title_input.value
+            inputContent = caseSensitive ? inputContent : inputContent.toLowerCase()
+
+            let title = element.children[1].children[0].textContent
+            title = caseSensitive ? title : title.toLowerCase();
+
+            if (title.indexOf(inputContent) == -1) {
+                element.classList.add("hide")
+            }
+        })
+    }
+
+    // games
+    document.getElementById("chatting").onclick = () => {
+        document.getElementById("category-input").value = "Just Chatting"
+    }
+    document.getElementById("fortnite").onclick = () => {
+        document.getElementById("category-input").value = "Fortnite"
+    }
+    document.getElementById("apex").onclick = () => {
+        document.getElementById("category-input").value = "Apex Legends"
+    }
+    document.getElementById("elden").onclick = () => {
+        document.getElementById("category-input").value = "Elden Ring"
+    }
+    document.getElementById("hearthstone").onclick = () => {
+        document.getElementById("category-input").value = "Hearthstone"
+    }
+    document.getElementById("lol").onclick = () => {
+        document.getElementById("category-input").value = "League of Legends"
+    }
+    document.getElementById("lost").onclick = () => {
+        document.getElementById("category-input").value = "Lost Ark"
+    }
+    document.getElementById("minecraft").onclick = () => {
+        document.getElementById("category-input").value = "Minecraft"
+    }
+    document.getElementById("valorant").onclick = () => {
+        document.getElementById("category-input").value = "Valorant"
+    }
+    document.getElementById("amogus").onclick = () => {
+        document.getElementById("category-input").value = "Among Us"
+    }
+    document.getElementById("csgo").onclick = () => {
+        document.getElementById("category-input").value = "Counter-Strike: Global Offensive"
+    }
+    document.getElementById("tft").onclick = () => {
+        document.getElementById("category-input").value = "Teamfight Tactics"
+    }
+    document.getElementById("fifa").onclick = () => {
+        document.getElementById("category-input").value = "FIFA 2022"
+    }
+    document.getElementById("gtav").onclick = () => {
+        document.getElementById("category-input").value = "GTA V"
+    }
+    document.getElementById("yugioh").onclick = () => {
+        document.getElementById("category-input").value = "Yu-Gi-Oh! Online"
+    }
+    document.getElementById("dbd").onclick = () => {
+        document.getElementById("category-input").value = "Dead by Daylight"
+    }
+    document.getElementById("overwatch").onclick = () => {
+        document.getElementById("category-input").value = "Overwatch"
+    }
+    document.getElementById("genshin").onclick = () => {
+        document.getElementById("category-input").value = "Genshin Impact"
+    }
+
+    // channels
+
+    document.getElementById("anomaly").onclick = () => {
+        document.getElementById("username-input").value = "Anomaly"
+    }
+    document.getElementById("brownman").onclick = () => {
+        document.getElementById("username-input").value = "RayNarvaezJr"
+    }
+    document.getElementById("ninja").onclick = () => {
+        document.getElementById("username-input").value = "Ninja"
+    }
+    document.getElementById("shroud").onclick = () => {
+        document.getElementById("username-input").value = "shroud"
+    }
+    document.getElementById("soda").onclick = () => {
+        document.getElementById("username-input").value = "Sodapoppin"
+    }
+    document.getElementById("summit").onclick = () => {
+        document.getElementById("username-input").value = "summit1g"
+    }
+    document.getElementById("tyler").onclick = () => {
+        document.getElementById("username-input").value = "loltyler1"
+    }
+    document.getElementById("xqc").onclick = () => {
+        document.getElementById("username-input").value = "xqcow"
+    }
+
+</script>
+
+</html>

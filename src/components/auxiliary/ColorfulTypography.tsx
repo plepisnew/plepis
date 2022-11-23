@@ -1,5 +1,4 @@
 import { Typography, SxProps, Theme } from '@mui/material';
-import { ResponsiveStyleValue } from '@mui/system';
 import React from 'react';
 import RowStack from './RowStack';
 
@@ -10,12 +9,12 @@ type Props = {
   }[];
   fontFamily?: string;
   spaced?: boolean;
-  sx?: SxProps;
+  //   sx?: SxProps;
 };
 
-const ColorfulTypography: React.FC<Props> = ({ words, fontFamily, spaced, sx }) => {
+const ColorfulTypography: React.FC<Props> = ({ words, fontFamily, spaced }) => {
   return (
-    <RowStack spacing={spaced ? 1 : 0} sx={sx}>
+    <RowStack spacing={spaced ? 1 : 0}>
       {words.map((word) => {
         const { text, color } = word;
         return (

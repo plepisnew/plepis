@@ -9,7 +9,6 @@ type Props = {
 // TODO: avoid hardcoding 70px
 const Page: React.FC<Props> = ({ children }) => {
   const router = useRouter();
-  console.log(router.pathname);
   return (
     <Box
       sx={{

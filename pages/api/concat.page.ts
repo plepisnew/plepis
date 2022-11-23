@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
 import { pipeline } from 'stream/promises';
 
+// TODO: make file sizes smaller :/
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const ffmpeg = createFFmpeg();
   await ffmpeg.load();
