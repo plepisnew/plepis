@@ -18,26 +18,6 @@ const HomePage: React.FC = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const openingHours = {
-    monday: {
-      start: 7,
-      end: 18
-    },
-    tuesday: {
-      start: 8,
-      end: 16
-    }
-  };
-
-  for (const day in openingHours) {
-    const { start, end } = (
-      openingHours as {
-        [day: string]: { start: number; end: number };
-      }
-    )[day];
-    console.log(start, end);
-  }
-
   return (
     <Box
       sx={{

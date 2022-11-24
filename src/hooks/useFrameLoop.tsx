@@ -1,14 +1,14 @@
 import { useEffect, useRef } from 'react';
 
-type loopCallback = (frame: number, currentTime: number, deltaTime: number) => void;
+type LoopCallback = (frame: number, currentTime: number, deltaTime: number) => void;
 
 /**
  * Custom hook for starting a requestAnimationFrame loop
- * @param {loopCallback} callback - function to be looped
+ * @param {LoopCallback} callback - function to be looped
  * @param {any[]} loopDependencies - array of dependencies, which trigger a new loop sequence
  */
 const useFrameLoop = (
-  callback: loopCallback,
+  callback: LoopCallback,
   loopDependencies?: React.DependencyList | undefined
 ) => {
   const requestId = useRef<number>();
@@ -23,7 +23,7 @@ const useFrameLoop = (
     }
 
     previousTime.current = time;
-    currentFrame.current = currentFrame.current == undefined ? 0 : currentFrame.current + 1;
+    currentFrame.current = currentFrame.current === undefined ? 0 : currentFrame.current + 1;
     requestId.current = requestAnimationFrame(loop);
   };
 

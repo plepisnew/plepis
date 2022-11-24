@@ -20,7 +20,6 @@ type NavItemProps = {
 const Navigation: React.FC = () => {
   const debug = useSelector(selectDebug);
   const router = useRouter();
-
   return (
     <RowStack
       sx={{
@@ -37,7 +36,7 @@ const Navigation: React.FC = () => {
             title={title}
             path={path}
             key={title}
-            selected={router.pathname === path}
+            selected={path === '/' ? router.pathname === '/' : router.pathname.startsWith(path)}
             debug={debug}
             suffix={
               index === navItems.length - 1 || !debug ? undefined : (
@@ -54,7 +53,6 @@ const Navigation: React.FC = () => {
 
 const NavItem: React.FC<NavItemProps> = ({ title, path, selected, suffix, debug }) => {
   const commonStyle: SxProps = {
-    borderWidth: selected ? 1 : 2,
     opacity: selected ? 1 : 0.65,
     transition: 'opacity 400ms',
     '&:hover': {
@@ -64,6 +62,7 @@ const NavItem: React.FC<NavItemProps> = ({ title, path, selected, suffix, debug 
 
   const normalStyle: SxProps = {
     borderBottomColor: selected ? 'header.contrastText' : 'rgba(69, 69, 69, 0)',
+    borderWidth: selected ? 1 : 2,
     borderBottomStyle: 'solid',
     padding: '4px 5px',
     ...commonStyle
@@ -71,6 +70,7 @@ const NavItem: React.FC<NavItemProps> = ({ title, path, selected, suffix, debug 
 
   const debugStyle: SxProps = {
     borderColor: selected ? 'header.debugContrastText' : 'rgba(69, 69, 69, 0)',
+    borderWidth: 2,
     borderStyle: 'solid',
     padding: '0 3px',
     borderRightWidth: 4,

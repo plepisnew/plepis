@@ -12,7 +12,6 @@ type Props = {
 
 const DeepDrawer: React.FC<Props> = ({ open, onClose, openNext, layer, correctNumber }) => {
   const offset = `${layer * 100}px`;
-  console.log(correctNumber);
   return (
     <Drawer
       open={open}
