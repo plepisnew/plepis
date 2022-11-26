@@ -1,32 +1,32 @@
-import { Box, Stack } from '@mui/material';
+import RowStack from '@/components/auxiliary/RowStack';
 import React, { useEffect, useRef, useState } from 'react';
-import Canvas from './Canvas';
+import algorithms, { Algorithm } from './algorithms';
+import CanvasPanel from './CanvasPanel';
+import ConfigPanel from './ConfigPanel';
 
 const SortPage: React.FC = () => {
-  const [count, setCount] = useState(0);
+  const [data, setData] = useState<number[]>([]);
+  const [sorting, setSorting] = useState<boolean>(false);
+  const [algorithm, setAlgorithm] = useState<Algorithm>(algorithms[0]);
 
+  // use context
   return (
-    <Stack>
-      Data Sorter
-      <Box>
-        <button onClick={() => setCount(count + 1)}>Click me :)</button>
-        {count}
-        <Canvas
-          callback={(context, { frame }) => {
-            const { width, height } = context.canvas;
-            context.clearRect(0, 0, width, height);
-            context.fillRect(frame % 1000, frame % 1000, 1000, 1000);
-            console.log(frame);
-          }}
-          width={1000}
-          height={1000}
-          style={{
-            backgroundColor: 'white'
-          }}
-          deps={[count]}
-        />
-      </Box>
-    </Stack>
+    <RowStack spacing={2}>
+      <CanvasPanel
+        data={data}
+        setData={setData}
+        setSorting={setSorting}
+        sorting={sorting}
+        algorithm={algorithm}
+      />
+      <ConfigPanel
+        data={data}
+        setData={setData}
+        setSorting={setSorting}
+        sorting={sorting}
+        setAlgorithm={setAlgorithm}
+      />
+    </RowStack>
   );
 };
 
