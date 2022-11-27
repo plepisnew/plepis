@@ -14,7 +14,10 @@ const ContactItem: React.FC<ContactItemProps> = ({ title, href, icon }) => {
   return (
     <MenuItem
       sx={{
-        whiteSpace: 'unset'
+        whiteSpace: 'unset',
+        '&:hover': {
+          backgroundColor: 'rgb(40, 40, 40)'
+        }
       }}
       onClick={href ? () => window.open(href, '_blank') : undefined}
     >

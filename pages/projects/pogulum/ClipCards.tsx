@@ -11,12 +11,7 @@ type Props = {
 const ClipCards: React.FC<Props> = ({ clips = [] }) => {
   const [filter, setFilter] = useState('');
   return (
-    <ColumnStack
-      spacing={2}
-      sx={{
-        height: '100%'
-      }}
-    >
+    <ColumnStack spacing={2} height="100%">
       <TextField
         variant="outlined"
         placeholder="Filter"

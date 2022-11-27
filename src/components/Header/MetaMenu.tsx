@@ -8,11 +8,9 @@ import {
   MenuItem,
   MenuProps,
   Switch,
-  Typography,
   FormControlLabel,
   SxProps
 } from '@mui/material';
-import { green } from '@mui/material/colors';
 import { styled } from '@/theme';
 import ContactItem from './ContactItem';
 import RowStack from '@/components/auxiliary/RowStack';
@@ -36,7 +34,7 @@ const StyledMenu = styled((props: MenuProps) => (
     {...props}
   />
 ))(({ theme }) => {
-  const { main, contrastText } = theme.palette.z4;
+  const { main, contrastText } = theme.palette.z5;
   return {
     '& .MuiPaper-root': {
       marginTop: theme.spacing(2),
@@ -61,18 +59,13 @@ const MetaMenu: React.FC = () => {
   const dispatch = useDispatch();
 
   const [metaAnchorEl, setMetaAnchorEl] = useState<HTMLElement | null>();
-  const [infraAnchorEl, setInfraAnchorEl] = useState<HTMLElement | null>();
   const handleMetaClose = () => setMetaAnchorEl(null);
-  const handleInfraClose = () => setInfraAnchorEl(null);
   const handleMeta = (e: React.MouseEvent<HTMLElement>) => setMetaAnchorEl(e.currentTarget);
-  const handleInfra = (e: React.MouseEvent<HTMLElement>) => setInfraAnchorEl(e.currentTarget);
   const metaOpen = Boolean(metaAnchorEl);
-  const infraOpen = Boolean(infraAnchorEl);
 
   const debugStyle: SxProps = {
     color: 'white',
     borderColor: 'white',
-    fontFamily: 'Consolas',
     '&:hover': {
       borderColor: 'white'
     }
@@ -82,7 +75,7 @@ const MetaMenu: React.FC = () => {
     <RowStack spacing={2}>
       <StyledMenu open={metaOpen} anchorEl={metaAnchorEl} onClose={handleMetaClose}>
         <MenuItem disableRipple>
-          <RowStack alignCenter>
+          <RowStack alignItems="center">
             <FormControlLabel
               control={
                 <Switch
@@ -102,53 +95,28 @@ const MetaMenu: React.FC = () => {
         <ContactItem
           title="Github: @plepisnew"
           href="https://github.com/plepisnew"
-          icon={<GitHubIcon />}
+          icon={<GitHubIcon htmlColor="white" />}
         />
-        <ContactItem title="Email: plepis.jaunais@gmail.com" icon={<EmailIcon />} />
+        <ContactItem
+          title="Email: plepis.jaunais@gmail.com"
+          icon={<EmailIcon htmlColor="white" />}
+        />
         <ContactItem
           title="Instagram: @ansishihi"
           href="https://instagram.com/ansishihi"
-          icon={<InstagramIcon />}
+          icon={<InstagramIcon htmlColor="white" />}
         />
         <ContactItem
           title="Linkedin: Ansis Plepis"
           href="https://www.linkedin.com/in/ansis-plepis-597a84164/"
-          icon={<LinkedInIcon />}
+          icon={<LinkedInIcon htmlColor="white" />}
         />
       </StyledMenu>
-      <StyledMenu open={infraOpen} anchorEl={infraAnchorEl} onClose={handleInfraClose}>
-        <MenuItem
-          sx={{
-            whiteSpace: 'unset',
-            width: 300
-          }}
-          disableRipple
-        >
-          {/* eslint-disable @next/next/no-img-element */}
-          <img
-            src="/images/t-eden.gif"
-            alt="tarnished eden"
-            width="100%"
-            style={{
-              borderRadius: 3
-            }}
-          />
-        </MenuItem>
-      </StyledMenu>
-      <StyledButton color="primary" onClick={handleMeta} sx={debug ? debugStyle : {}}>
+      <StyledButton color="secondary" onClick={handleMeta} sx={debug ? debugStyle : {}}>
         Meta data{' '}
         <ArrowDropDownIcon
           sx={{
             transform: metaOpen ? 'rotate(180deg)' : '',
-            transition: 'transform 200ms'
-          }}
-        />
-      </StyledButton>
-      <StyledButton color="secondary" onClick={handleInfra} sx={debug ? debugStyle : {}}>
-        Infra data{' '}
-        <ArrowDropDownIcon
-          sx={{
-            transform: infraOpen ? 'rotate(180deg)' : '',
             transition: 'transform 200ms'
           }}
         />

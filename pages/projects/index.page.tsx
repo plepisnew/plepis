@@ -22,7 +22,16 @@ const ProjectsPage: React.FC = () => {
         sm: 'row'
       }}
     >
-      <Platform {...platformProps} display="flex" flexDirection="column">
+      <Platform
+        {...platformProps}
+        display="flex"
+        flexDirection="column"
+        height="max-content"
+        maxHeight={{
+          xs: '50%',
+          sm: '100%'
+        }}
+      >
         <Typography textAlign="center" variant="h3" mb={2} fontSize="1.4rem">
           JavaScript Projects
         </Typography>
@@ -39,7 +48,6 @@ const ProjectsPage: React.FC = () => {
                   md={6}
                   sx={{
                     pointerEvents: done ? undefined : 'none',
-                    // opacity: done ? 1 : 0.5
                     filter: done ? undefined : 'brightness(50%)'
                   }}
                 >

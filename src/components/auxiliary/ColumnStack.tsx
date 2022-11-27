@@ -1,29 +1,25 @@
-import { Stack, SxProps } from '@mui/material';
+import { Stack, StackProps } from '@mui/material';
 
 import React from 'react';
 
 type Props = {
   children: React.ReactNode;
-  spacing?: number;
-  sx?: SxProps;
-  alignCenter?: boolean;
   dualColumn?: boolean;
-};
+} & StackProps;
 
-const ColumnStack: React.FC<Props> = ({ children, spacing, sx, alignCenter, dualColumn }) => {
+const ColumnStack: React.FC<Props> = ({ children, dualColumn, ...stackProps }) => {
   return (
     <Stack
+      {...stackProps}
       direction="column"
-      spacing={spacing}
       sx={{
-        alignItems: alignCenter ? 'center' : undefined,
         width: dualColumn
           ? {
               xs: '100%',
               sm: '50%'
             }
           : undefined,
-        ...sx
+        ...stackProps.sx
       }}
     >
       {children}

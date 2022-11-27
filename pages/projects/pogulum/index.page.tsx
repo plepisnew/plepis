@@ -1,7 +1,6 @@
-import ColumnStack from '@/components/auxiliary/ColumnStack';
 import Image from '@/components/auxiliary/Image';
 import RowStack from '@/components/auxiliary/RowStack';
-import { Box, Button, CircularProgress, Typography, Grid, Divider } from '@mui/material';
+import { Box, Button, CircularProgress, Typography, Grid, Divider, Stack } from '@mui/material';
 import { TwitchGame as Game } from 'pages/api/config';
 import React, { useState, useEffect } from 'react';
 import StyledFilter from './Filter.styled';
@@ -91,10 +90,10 @@ const PogulumPage: React.FC<Props> = ({ topGames }) => {
       }}
     >
       <Grid item {...gridColumns} height="70%" bgcolor="rgba(0, 255, 0, 0.2)" p={3}>
-        <ColumnStack spacing={3}>
-          <RowStack alignCenter spacing={3}>
+        <Stack spacing={3}>
+          <RowStack alignItems="center" spacing={3}>
             <Image
-              src="projects/tcs_horizontal.png"
+              src="/projects/tcs_horizontal.png"
               alt="tcs_horizontal"
               rounded
               shadow
@@ -132,7 +131,7 @@ const PogulumPage: React.FC<Props> = ({ topGames }) => {
           <Button variant="contained" onClick={findClips}>
             Find Clips
           </Button>
-        </ColumnStack>
+        </Stack>
       </Grid>
       <Grid item {...gridColumns} height="70%" bgcolor="rgba(0, 0, 255, 0.2)" p={3}>
         <ClipCards clips={clips} />

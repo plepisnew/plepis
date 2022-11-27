@@ -20,14 +20,24 @@ type NavItemProps = {
 const Navigation: React.FC = () => {
   const debug = useSelector(selectDebug);
   const router = useRouter();
+
+  const typographyProps: Partial<Parameters<typeof ColorfulTypography>[0]> = {
+    fontFamily: 'Consolas',
+    display: {
+      xs: 'none',
+      lg: 'block'
+    }
+  };
+
   return (
     <RowStack
       sx={{
         flexGrow: 1,
-        gap: 1
+        gap: debug ? 1 : 2,
+        alignItems: 'center'
       }}
     >
-      {debug && <ColorfulTypography words={prefix} fontFamily="Consolas" spaced />}
+      {debug && <ColorfulTypography words={prefix} {...typographyProps} spaced />}
       {navItems.map((navItem, index) => {
         const path = navItem.path;
         const title = debug ? navItem.debugTitle : navItem.title;
@@ -40,13 +50,13 @@ const Navigation: React.FC = () => {
             debug={debug}
             suffix={
               index === navItems.length - 1 || !debug ? undefined : (
-                <ColorfulTypography words={comma} fontFamily="Consolas" />
+                <ColorfulTypography words={comma} {...typographyProps} />
               )
             }
           />
         );
       })}
-      {debug && <ColorfulTypography words={suffix} fontFamily="Consolas" />}
+      {debug && <ColorfulTypography words={suffix} {...typographyProps} />}
     </RowStack>
   );
 };
@@ -62,9 +72,11 @@ const NavItem: React.FC<NavItemProps> = ({ title, path, selected, suffix, debug 
 
   const normalStyle: SxProps = {
     borderBottomColor: selected ? 'header.contrastText' : 'rgba(69, 69, 69, 0)',
-    borderWidth: selected ? 1 : 2,
-    borderBottomStyle: 'solid',
-    padding: '4px 5px',
+    backgroundColor: selected ? 'white' : 'none',
+    border: '2px solid white',
+    color: 'black',
+    borderRadius: '3px',
+    padding: '4px 7px',
     ...commonStyle
   };
 

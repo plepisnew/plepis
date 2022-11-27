@@ -14,17 +14,12 @@ type FilterProps = {
 
 const StyledFilter = styled(
   ({ value, setValue, checked, setChecked, placeholder, options }: FilterProps) => (
-    <RowStack alignCenter>
+    <RowStack alignItems="center">
       <Switch value={checked} onChange={(_, checked: boolean) => setChecked(checked)} />
       <Autocomplete
         inputValue={value}
         onInputChange={(_, newValue) => setValue(newValue ?? '')}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            placeholder={placeholder}
-          />
-        )}
+        renderInput={(params) => <TextField {...params} placeholder={placeholder} />}
         options={options}
         freeSolo
         disabled={!checked}
