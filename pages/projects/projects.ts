@@ -5,14 +5,15 @@ export type Project = {
   img: string;
   source: string;
   legacy: boolean;
+  done: boolean;
 };
 
 // TODO: make each file in projects export the following info and dynamically import it or something
 
-const imgPrefix = (path: string): string => `/images/projects/${path}`;
+const imgPrefix = (path: string): string => `/projects/${path}`;
 const projectPrefix = (path: string) => `/projects/${path}`;
 
-const staticProjects: Project[] = [
+const projects: Project[] = [
   {
     title: 'Old Tetris',
     description:
@@ -20,7 +21,8 @@ const staticProjects: Project[] = [
     href: projectPrefix('tetris'),
     img: imgPrefix('tetris.png'),
     source: 'https://github.com/plepisnew/plepis',
-    legacy: true
+    legacy: true,
+    done: false
   },
   {
     title: '2D Collisions',
@@ -29,7 +31,8 @@ const staticProjects: Project[] = [
     href: projectPrefix('collisions'),
     img: imgPrefix('collisions.png'),
     source: 'https://github.com/plepisnew/plepis',
-    legacy: true
+    legacy: true,
+    done: false
   },
   {
     title: 'Rubiks Cube Solver',
@@ -38,7 +41,8 @@ const staticProjects: Project[] = [
     href: projectPrefix('rubiks'),
     img: imgPrefix('rubiks.jpg'),
     source: 'https://github.com/plepisnew/plepis',
-    legacy: true
+    legacy: true,
+    done: false
   },
   {
     title: 'Old Pogulum',
@@ -47,11 +51,9 @@ const staticProjects: Project[] = [
     href: projectPrefix('tetris'),
     img: imgPrefix('tcs.png'),
     source: 'https://github.com/plepisnew/plepis',
-    legacy: true
-  }
-];
-
-const dynamicProjects: Project[] = [
+    legacy: true,
+    done: false
+  },
   {
     title: 'Pogulum',
     description:
@@ -59,7 +61,8 @@ const dynamicProjects: Project[] = [
     href: projectPrefix('pogulum'),
     img: imgPrefix('tcs.png'),
     source: 'https://github.com/plepisnew/plepis',
-    legacy: false
+    legacy: false,
+    done: true
   },
   {
     title: 'Tetris',
@@ -67,7 +70,8 @@ const dynamicProjects: Project[] = [
     href: projectPrefix('tetris'),
     img: imgPrefix('tetris_blocks.png'),
     source: 'https://github.com/plepisnew/plepis',
-    legacy: false
+    legacy: false,
+    done: false
   },
   {
     title: 'Sudoku',
@@ -75,7 +79,8 @@ const dynamicProjects: Project[] = [
     href: projectPrefix('sudoku'),
     img: imgPrefix('sudoku.png'),
     source: 'https://github.com/plepisnew/plepis',
-    legacy: false
+    legacy: false,
+    done: false
   },
   {
     title: 'Game of Life',
@@ -83,7 +88,8 @@ const dynamicProjects: Project[] = [
     href: projectPrefix('gol'),
     img: imgPrefix('gol.png'),
     source: 'https://github.com/plepisnew/plepis',
-    legacy: false
+    legacy: false,
+    done: false
   },
   {
     title: 'Mathematica',
@@ -92,7 +98,8 @@ const dynamicProjects: Project[] = [
     href: projectPrefix('mathematica'),
     img: imgPrefix('math.png'),
     source: 'https://github.com/plepisnew/plepis',
-    legacy: false
+    legacy: false,
+    done: false
   },
   {
     title: 'Data Sorter',
@@ -101,10 +108,9 @@ const dynamicProjects: Project[] = [
     href: projectPrefix('sort'),
     img: imgPrefix('sort.png'),
     source: 'https://github.com/plepisnew/plepis',
-    legacy: false
+    legacy: false,
+    done: true
   }
 ];
-
-const projects: Project[] = [...staticProjects, ...dynamicProjects];
 
 export default projects;

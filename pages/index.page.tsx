@@ -2,18 +2,15 @@ import React, { useState, useRef } from 'react';
 import { Typography, Button, Stack, CircularProgress, Box } from '@mui/material';
 import RowStack from '@/components/auxiliary/RowStack';
 import DeepDrawer from './DeepDrawer';
+import Link from 'next/link';
 
 // const correctCombination = [1, 3, 3, 7, 6, 9, 4, 2, 0];
 const correctCombination = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const HomePage: React.FC = () => {
   const [drawerOpen, setDrawerOpen] = useState(correctCombination.map((_) => false));
-  const closeDrawer = (index: number) =>
-    setDrawerOpen(drawerOpen.map((val, drawerIndex) => (index === drawerIndex ? false : val)));
   const openDrawer = (index: number) =>
     setDrawerOpen(drawerOpen.map((val, drawerIndex) => (index === drawerIndex ? true : val)));
-  const closeBefore = (index: number) =>
-    setDrawerOpen(drawerOpen.map((val, drawerIndex) => (drawerIndex <= index ? false : val)));
   const closeAll = () => setDrawerOpen(drawerOpen.map((val) => false));
 
   const [loading, setLoading] = useState(false);

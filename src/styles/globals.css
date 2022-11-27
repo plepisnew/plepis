@@ -17,28 +17,33 @@ a {
   /* color: inherit;
   background-color: inherit; */
 }
+@media (min-width: 400px) {
+  html {
+    font-size: 0.75rem;
+  }
+}
 
 @media (min-width: 600px) {
-  body {
+  html {
     font-size: 0.85rem;
   }
 }
 
 @media (min-width: 900px) {
-  body {
+  html {
     font-size: 0.925rem;
   }
 }
 
 @media (min-width: 1200px) {
-  body {
+  html {
     font-size: 1rem;
   }
 }
 
 @media (min-width: 1536px) {
-  body {
-    font-size: 1.1rem;
+  html {
+    font-size: 1.25rem;
   }
 }
 

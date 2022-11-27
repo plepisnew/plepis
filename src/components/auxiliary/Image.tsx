@@ -1,4 +1,4 @@
-import { Box, SxProps } from '@mui/material';
+import { Box, BoxProps } from '@mui/material';
 import React from 'react';
 
 type Props = {
@@ -7,25 +7,22 @@ type Props = {
    */
   src: string;
   alt: string;
-  sx?: SxProps;
-  width?: string | number;
-  height?: string | number;
   rounded?: boolean;
   shadow?: boolean;
-};
+} & BoxProps;
 
-const Image: React.FC<Props> = ({ src, sx, width, height, rounded, alt, shadow }) => {
+const Image: React.FC<Props> = ({ src, rounded, alt, shadow, ...boxProps }) => {
   return (
     <Box
+      {...boxProps}
       component="img"
-      src={`/images/${src}`}
+      src={`/images${src}`}
       sx={{
         borderRadius: rounded ? '5px' : '',
         boxShadow: shadow ? '0 0 3px rgba(0, 0, 0, 0.5)' : undefined,
-        ...sx
+        cursor: boxProps.onClick ? 'pointer' : undefined,
+        ...boxProps.sx
       }}
-      width={width}
-      height={height}
       alt={alt}
     />
   );

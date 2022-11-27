@@ -1,67 +1,75 @@
-import ColumnStack from '@/components/auxiliary/ColumnStack';
 import Image from '@/components/auxiliary/Image';
 import RowStack from '@/components/auxiliary/RowStack';
-import { Masonry } from '@mui/lab';
-import { Divider, Typography } from '@mui/material';
-import { Stack } from '@mui/system';
-import React from 'react';
-
+import { Grid, Stack, Typography, Box } from '@mui/material';
+import React, { useState } from 'react';
 import projects, { Project } from './projects';
-import ProjectCard from './ProjectCard';
-
-const staticProjects: Project[] = projects.filter((project) => project.legacy);
-const dynamicProjects: Project[] = projects.filter((project) => !project.legacy);
-
-const createProjectCards = (projects: Project[]): React.ReactElement[] =>
-  projects.map((project) => <ProjectCard project={project} key={project.title} />);
-
-const createColumn = (items: Project[]): React.ReactElement => {
-  const legacy = (items[0] || { legacy: false }).legacy;
-  const imageSource = legacy ? 'projects/sad.png' : 'projects/happy.png';
-  const title = legacy ? 'HTML Projects' : 'React Projects';
-  return (
-    <ColumnStack alignCenter dualColumn spacing={2}>
-      <RowStack
-        alignCenter
-        spacing={3}
-        sx={{
-          backgroundColor: 'z1.main',
-          width: '100%',
-          justifyContent: 'center'
-        }}
-      >
-        <Typography fontSize="2rem">{title}</Typography>
-        <Image src={imageSource} alt={imageSource} width={100} rounded shadow />
-      </RowStack>
-      <Masonry
-        columns={{
-          xs: 1,
-          sm: 1,
-          md: 2,
-          lg: 2,
-          xl: 3
-        }}
-        spacing={3}
-      >
-        {createProjectCards(items)}
-      </Masonry>
-    </ColumnStack>
-  );
-};
+import { headerHeight } from '@/components/Header';
+import ProjectDescription from './ProjectDescription';
+import Platform from '@/components/auxiliary/Platform';
 
 const ProjectsPage: React.FC = () => {
+  /* prettier-ignore */
+  const platformProps = { bg: 3, radius: '5px', padding: 3, height: '100%', width: { xs: '100%', sm: '50%' }};
+
+  const [selectedProject, setSelectedProject] = useState<Project>(projects[0]);
+
   return (
-    <Stack
-      spacing={3}
+    <RowStack
+      height="100%"
+      spacing={2}
       direction={{
         xs: 'column',
         sm: 'row'
       }}
     >
-      {createColumn(staticProjects)}
-      <Divider orientation="vertical" flexItem />
-      {createColumn(dynamicProjects)}
-    </Stack>
+      <Platform {...platformProps} display="flex" flexDirection="column">
+        <Typography textAlign="center" variant="h3" mb={2} fontSize="1.4rem">
+          JavaScript Projects
+        </Typography>
+        <Box overflow="scroll">
+          <Grid container columnSpacing={2} rowSpacing={1}>
+            {projects.map((project) => {
+              const { title, img, done } = project;
+              return (
+                <Grid
+                  item
+                  key={title}
+                  xs={12}
+                  sm={12}
+                  md={6}
+                  sx={{
+                    pointerEvents: done ? undefined : 'none',
+                    // opacity: done ? 1 : 0.5
+                    filter: done ? undefined : 'brightness(50%)'
+                  }}
+                >
+                  <Image
+                    src={img}
+                    alt={title}
+                    width="100%"
+                    rounded
+                    shadow
+                    onClick={() => setSelectedProject(project)}
+                  />
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Box>
+      </Platform>
+      <Platform
+        {...platformProps}
+        overflow={{
+          xs: 'visible',
+          md: 'scroll'
+        }}
+      >
+        <Typography textAlign="center" variant="h3" marginBottom={3} fontSize="1.4rem">
+          Project Description
+        </Typography>
+        <ProjectDescription project={selectedProject} overflow="scroll" />
+      </Platform>
+    </RowStack>
   );
 };
 

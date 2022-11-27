@@ -13,7 +13,9 @@ const Page: React.FC<Props> = ({ children }) => {
   return (
     <Box
       sx={{
-        minHeight: `calc(100vh - ${headerHeight})`,
+        // minHeight: `calc(100vh - ${headerHeight})`,
+        height: `calc(100vh - ${headerHeight})`,
+        overflowY: 'scroll',
         backgroundColor: 'z0.main'
       }}
       p={6}

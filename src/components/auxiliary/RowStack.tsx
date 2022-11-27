@@ -1,34 +1,13 @@
-import { Stack, SxProps } from '@mui/material';
+import { Stack, SxProps, StackProps } from '@mui/material';
 import React from 'react';
 
 type Props = {
   children: React.ReactNode;
-  spacing?: number;
-  sx?: SxProps;
-  alignCenter?: boolean;
-  fullHeight?: boolean;
-  fullWidth?: boolean;
-};
+} & StackProps;
 
-const RowStack: React.FC<Props> = ({
-  children,
-  spacing,
-  sx,
-  alignCenter,
-  fullHeight,
-  fullWidth
-}) => {
+const RowStack: React.FC<Props> = ({ children, ...stackProps }) => {
   return (
-    <Stack
-      direction="row"
-      spacing={spacing}
-      sx={{
-        alignItems: alignCenter ? 'center' : undefined,
-        height: fullHeight ? '100%' : undefined,
-        width: fullWidth ? '100%' : undefined,
-        ...sx
-      }}
-    >
+    <Stack direction="row" {...stackProps}>
       {children}
     </Stack>
   );

@@ -1,27 +1,27 @@
 import React from 'react';
-import { Paper, PaperProps } from '@mui/material';
+import { Box, BoxProps } from '@mui/material';
 
 type Props = {
   children: React.ReactNode;
-  bg: number;
-  fg: number;
-  radius: number | string;
-} & PaperProps;
+  bg?: number;
+  fg?: number;
+  radius?: number | string;
+} & BoxProps;
 
-const Platform: React.FC<Props> = ({ children, bg, fg, radius, ...paperProps }) => {
+const Platform: React.FC<Props> = ({ children, bg = 0, fg = 0, radius, ...boxProps }) => {
   return (
-    <Paper
-      {...paperProps}
+    <Box
+      {...boxProps}
       sx={{
         backgroundColor: `rgb(${bg * 10},${bg * 10},${bg * 10})`,
         color: `rgb(${255 - fg * 10},${255 - fg * 10},${255 - fg * 10})`,
-        borderRadius: radius,
+        borderRadius: radius || 0,
         padding: 2,
-        ...paperProps.sx
+        ...boxProps.sx
       }}
     >
       {children}
-    </Paper>
+    </Box>
   );
 };
 

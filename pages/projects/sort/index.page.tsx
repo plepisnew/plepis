@@ -7,9 +7,9 @@ import ConfigPanel from './ConfigPanel';
 const SortPage: React.FC = () => {
   const [data, setData] = useState<number[]>([]);
   const [sorting, setSorting] = useState<boolean>(false);
-  const [algorithm, setAlgorithm] = useState<Algorithm>(algorithms[0]);
+  const [algorithm, setAlgorithm] = useState<Algorithm>(algorithms[4]);
 
-  // use context
+  // use context or react redux
   return (
     <RowStack spacing={2}>
       <CanvasPanel

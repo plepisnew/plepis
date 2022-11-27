@@ -2,7 +2,7 @@ import { MutableRefObject } from 'react';
 
 export type Algorithm = {
   name: string;
-  sorter: (indices: LowestCompare) => void;
+  sorter?: (indices: LowestCompare) => void;
 };
 
 type LowestCompare = {
@@ -14,20 +14,16 @@ type LowestCompare = {
 
 const algorithms: Algorithm[] = [
   {
-    name: 'Bubble Sort',
-    sorter: () => {}
+    name: 'Bubble Sort'
   },
   {
-    name: 'Quick Sort',
-    sorter: () => {}
+    name: 'Quick Sort'
   },
   {
-    name: 'Merge Sort',
-    sorter: () => {}
+    name: 'Merge Sort'
   },
   {
-    name: 'Insertion Sort',
-    sorter: () => {}
+    name: 'Insertion Sort'
   },
   {
     name: 'Selection Sort',
@@ -70,20 +66,16 @@ const algorithms: Algorithm[] = [
     }
   },
   {
-    name: 'Heap Sort',
-    sorter: () => {}
+    name: 'Heap Sort'
   },
   {
-    name: 'Radix Sort',
-    sorter: () => {}
+    name: 'Radix Sort'
   },
   {
-    name: 'Shellsort',
-    sorter: () => {}
+    name: 'Shellsort'
   },
   {
-    name: 'Bogo Sort',
-    sorter: () => {}
+    name: 'Bogo Sort'
   }
 ];
 

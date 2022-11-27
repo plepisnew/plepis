@@ -9,7 +9,11 @@ import {
   Autocomplete,
   Box,
   TextFieldProps,
-  styled
+  styled,
+  Paper,
+  MenuItem,
+  Menu,
+  List
 } from '@mui/material';
 import algorithms, { Algorithm } from './algorithms';
 import { randomIntegers } from '@/util/random';
@@ -130,12 +134,13 @@ const ConfigPanel: React.FC<Props> = ({ data, setData, sorting, setSorting, setA
         <Autocomplete
           clearOnEscape
           getOptionLabel={(option) => option.name}
-          defaultValue={algorithms[0]}
           onChange={(_, value) => (value ? setAlgorithm(value) : null)}
           renderInput={(params) => (
             <WhiteTextField {...params} placeholder="Select existing algorithm" />
           )}
+          getOptionDisabled={(option) => !option.sorter}
           options={algorithms}
+          ListboxComponent={(props) => <ul {...props} className="sort-autocomplete" />}
         />
         <Box>
           <WhiteDivider>OR</WhiteDivider>

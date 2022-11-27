@@ -1,5 +1,6 @@
 import Page from '@/components/Page';
 import '@/styles/globals.css';
+import '@/styles/sort.css';
 import type { AppProps } from 'next/app';
 import theme from '@/theme';
 import { ThemeProvider } from '@mui/material';

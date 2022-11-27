@@ -57,12 +57,13 @@ const CanvasPanel: React.FC<Props> = ({ data, setData, sorting, setSorting, algo
           clearInterval(timerId);
         }
 
-        algorithm.sorter({
-          current,
-          currentIndex,
-          comparingIndex,
-          lowestIndex
-        });
+        if (algorithm.sorter)
+          algorithm.sorter({
+            current,
+            currentIndex,
+            comparingIndex,
+            lowestIndex
+          });
       }, 1);
       return () => clearInterval(timerId);
     }
