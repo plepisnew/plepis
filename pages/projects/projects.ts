@@ -18,21 +18,21 @@ const projects: Project[] = [
     title: 'Old Tetris',
     description:
       'Classic Tetris created using HTML5 Canvas. Supports customizable inputs and configurables for tweaking gameplay.',
-    href: projectPrefix('tetris'),
+    href: '/legacy/tetris.html',
     img: imgPrefix('tetris.png'),
-    source: 'https://github.com/plepisnew/plepis',
+    source: 'https://github.com/plepisnew/learn-js/blob/main/public/js/tetris.js',
     legacy: true,
-    done: false
+    done: true
   },
   {
     title: '2D Collisions',
     description:
       'Simulate elastic 2D collisions using spheres with customizable radius, mass, coefficient of friction and gravitational acceleration.',
-    href: projectPrefix('collisions'),
+    href: '/legacy/collision.html',
     img: imgPrefix('collisions.png'),
-    source: 'https://github.com/plepisnew/plepis',
+    source: 'https://github.com/plepisnew/learn-js/blob/main/public/js/collision.js',
     legacy: true,
-    done: false
+    done: true
   },
   {
     title: 'Rubiks Cube Solver',
@@ -40,7 +40,7 @@ const projects: Project[] = [
       'Simulates the behavior of an NxN cube and provides an interface for manipulating it. Supports solving the cube programmatically for 1x1, 2x2 and 3x3 cubes',
     href: projectPrefix('rubiks'),
     img: imgPrefix('rubiks.jpg'),
-    source: 'https://github.com/plepisnew/plepis',
+    source: 'https://github.com/plepisnew/learn-js/blob/main/public/js/rubiks.js',
     legacy: true,
     done: false
   },
@@ -48,11 +48,11 @@ const projects: Project[] = [
     title: 'Old Pogulum',
     description:
       'Accenture Group Project, supporting clip fetching from Twitch API based on different filters.',
-    href: projectPrefix('tetris'),
+    href: '/legacy/pogulum.html',
     img: imgPrefix('tcs.png'),
-    source: 'https://github.com/plepisnew/plepis',
+    source: 'https://github.com/plepisnew/plepis/blob/main/public/legacy/pogulum.html',
     legacy: true,
-    done: false
+    done: true
   },
   {
     title: 'Pogulum',
@@ -60,7 +60,7 @@ const projects: Project[] = [
       'Twitch Clip Scraper: find clips based on selected filters and concatenate them. Ez content',
     href: projectPrefix('pogulum'),
     img: imgPrefix('tcs.png'),
-    source: 'https://github.com/plepisnew/plepis',
+    source: 'https://github.com/plepisnew/plepis/tree/main/pages/projects/pogulum',
     legacy: false,
     done: true
   },
@@ -107,7 +107,7 @@ const projects: Project[] = [
       'Different Sorting algorithm visualizer. Based on famous YouTube video producing insane beats',
     href: projectPrefix('sort'),
     img: imgPrefix('sort.png'),
-    source: 'https://github.com/plepisnew/plepis',
+    source: 'https://github.com/plepisnew/plepis/tree/main/pages/projects/sort',
     legacy: false,
     done: true
   }
