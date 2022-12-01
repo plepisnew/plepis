@@ -8,7 +8,6 @@ type Props = {
     color: string;
   }[];
   spaced?: boolean;
-  //   sx?: SxProps;
 } & TypographyProps;
 
 const ColorfulTypography: React.FC<Props> = ({ words, spaced, ...typographyProps }) => {

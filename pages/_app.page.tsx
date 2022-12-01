@@ -7,6 +7,7 @@ import { ThemeProvider } from '@mui/material';
 import Header from '@/components/Header';
 import { Provider } from 'react-redux';
 import store from '@/store';
+import useComboDrawer from './useComboDrawer';
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (

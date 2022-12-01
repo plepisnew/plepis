@@ -20,7 +20,7 @@ const projects: Project[] = [
       'Classic Tetris created using HTML5 Canvas. Supports customizable inputs and configurables for tweaking gameplay.',
     href: '/legacy/tetris.html',
     img: imgPrefix('tetris.png'),
-    source: 'https://github.com/plepisnew/learn-js/blob/main/public/js/tetris.js',
+    source: 'https://github.com/plepisnew/plepis/blob/main/public/legacy/tetris.html',
     legacy: true,
     done: true
   },
@@ -30,7 +30,7 @@ const projects: Project[] = [
       'Simulate elastic 2D collisions using spheres with customizable radius, mass, coefficient of friction and gravitational acceleration.',
     href: '/legacy/collision.html',
     img: imgPrefix('collisions.png'),
-    source: 'https://github.com/plepisnew/learn-js/blob/main/public/js/collision.js',
+    source: 'https://github.com/plepisnew/plepis/blob/main/public/legacy/collision.html',
     legacy: true,
     done: true
   },

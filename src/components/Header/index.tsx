@@ -1,16 +1,18 @@
 import React from 'react';
-import { AppBar, Container, Toolbar, useTheme } from '@mui/material';
+import { AppBar, Container, Toolbar } from '@mui/material';
 import Navigation from './Navigation';
 import Image from '@/components/auxiliary/Image';
 import MetaMenu from './MetaMenu';
 import { useSelector } from '@/hooks/redux';
 import { selectDebug } from '@/store/debugSlice';
+import useComboDrawer from 'pages/useComboDrawer';
 
 export const headerHeight = '80px';
 
 const Header: React.FC = () => {
-  const debug = useSelector(selectDebug);
+  const { loading, start, Drawers } = useComboDrawer();
 
+  const debug = useSelector(selectDebug);
   return (
     <AppBar
       position="sticky"
@@ -22,28 +24,20 @@ const Header: React.FC = () => {
         }
       }}
     >
-      <Container
-        maxWidth="xl"
-        sx={{
-          height: '100%'
-        }}
-      >
-        <Toolbar
-          sx={{
-            gap: 3,
-            height: '100%'
-          }}
-        >
+      <Container maxWidth="xl" sx={{ height: '100%' }}>
+        <Toolbar sx={{ gap: 3, height: '100%' }}>
           <Image
             src={debug ? `/tarnished-eden.png` : '/tainted_eden.png'}
             width={45}
             alt="pfp"
             rounded
+            onClick={() => (debug ? start() : undefined)}
           />
           <Navigation />
           <MetaMenu />
         </Toolbar>
       </Container>
+      {Drawers}
     </AppBar>
   );
 };
