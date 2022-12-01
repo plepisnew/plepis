@@ -12,7 +12,8 @@ const Page: React.FC<Props> = ({ children }) => {
   const router = useRouter();
   return (
     <Box
-      width="100vw"
+      //   width="max(100vw, 100%)"
+      width="max(100vw)"
       height={`calc(100vh - ${headerHeight})`}
       overflow="scroll"
       bgcolor="z0.main"

@@ -18,14 +18,12 @@ const Header: React.FC = () => {
       position="sticky"
       sx={{
         height: headerHeight,
-        '&': {
-          backgroundColor: debug ? 'header.debugMain' : 'header.main',
-          color: debug ? 'header.debugContrastText' : 'header.contrastText'
-        }
+        backgroundColor: debug ? 'header.debugMain' : 'header.main',
+        color: debug ? 'header.debugContrastText' : 'header.contrastText'
       }}
     >
       <Container maxWidth="xl" sx={{ height: '100%' }}>
-        <Toolbar sx={{ gap: 3, height: '100%' }}>
+        <Toolbar sx={{ gap: 3, height: '100%', overflow: 'scroll' }}>
           <Image
             src={debug ? `/tarnished-eden.png` : '/tainted_eden.png'}
             width={45}
