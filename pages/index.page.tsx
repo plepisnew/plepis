@@ -5,11 +5,9 @@ import useComboDrawer from './useComboDrawer';
 
 const HomePage: React.FC = () => {
   return (
-    <Box position="relative">
-      <RowStack>
-        <Typography>Home Page</Typography>
-      </RowStack>
-    </Box>
+    <RowStack>
+      <Typography>Home Page</Typography>
+    </RowStack>
   );
 };
 export default HomePage;

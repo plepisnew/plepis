@@ -12,12 +12,10 @@ const Page: React.FC<Props> = ({ children }) => {
   const router = useRouter();
   return (
     <Box
-      sx={{
-        // minHeight: `calc(100vh - ${headerHeight})`,
-        height: `calc(100vh - ${headerHeight})`,
-        overflowY: 'scroll',
-        backgroundColor: 'z0.main'
-      }}
+      width="100vw"
+      height={`calc(100vh - ${headerHeight})`}
+      overflow="scroll"
+      bgcolor="z0.main"
       p={6}
     >
       {/* <Box
