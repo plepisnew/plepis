@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@font-face {
+  font-family: Noto Sans;
+  src: url(../fonts/NotoSans-Thin.ttf);
+  font-weight: 100;
+}
+@font-face {
+  font-family: Noto Sans;
+  src: url(../fonts/NotoSans-ExtraLight.ttf);
+  font-weight: 200;
+}
+@font-face {
+  font-family: Noto Sans;
+  src: url(../fonts/NotoSans-Light.ttf);
+  font-weight: 300;
+}
+@font-face {
+  font-family: Noto Sans;
+  src: url(../fonts/NotoSans-Regular.ttf);
+  font-weight: 400;
+}
+@font-face {
+  font-family: Noto Sans;
+  src: url(../fonts/NotoSans-Medium.ttf);
+  font-weight: 500;
+}
+@font-face {
+  font-family: Noto Sans;
+  src: url(../fonts/NotoSans-SemiBold.ttf);
+  font-weight: 600;
+}
+@font-face {
+  font-family: Noto Sans;
+  src: url(../fonts/NotoSans-Bold.ttf);
+  font-weight: 700;
+}
+@font-face {
+  font-family: Noto Sans;
+  src: url(../fonts/NotoSans-ExtraBold.ttf);
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: Noto Sans;
+  src: url(../fonts/NotoSans-ThinItalic.ttf);
+  font-style: italic;
+  font-weight: 100;
+}
+@font-face {
+  font-family: Noto Sans;
+  src: url(../fonts/NotoSans-ExtraLightItalic.ttf);
+  font-style: italic;
+  font-weight: 200;
+}
+@font-face {
+  font-family: Noto Sans;
+  src: url(../fonts/NotoSans-LightItalic.ttf);
+  font-style: italic;
+  font-weight: 300;
+}
+@font-face {
+  font-family: Noto Sans;
+  src: url(../fonts/NotoSans-Italic.ttf);
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: Noto Sans;
+  src: url(../fonts/NotoSans-MediumItalic.ttf);
+  font-style: italic;
+  font-weight: 500;
+}
+@font-face {
+  font-family: Noto Sans;
+  src: url(../fonts/NotoSans-SemiBoldItalic.ttf);
+  font-style: italic;
+  font-weight: 600;
+}
+@font-face {
+  font-family: Noto Sans;
+  src: url(../fonts/NotoSans-BoldItalic.ttf);
+  font-style: italic;
+  font-weight: 700;
+}
+@font-face {
+  font-family: Noto Sans;
+  src: url(../fonts/NotoSans-ExtraBoldItalic.ttf);
+  font-style: italic;
+  font-weight: 800;
+}
+
+* {
+  font-family: Noto Sans;
+}
+
+body {
+  @apply bg-page;
+  @apply text-page-foreground;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+}
