@@ -1,4 +1,3 @@
-import { Technology } from "./Technology";
 import dockerImage from "@/assets/images/tech/docker.png";
 import i18nImage from "@/assets/images/tech/i18n.png";
 import nextImage from "@/assets/images/tech/next.png";

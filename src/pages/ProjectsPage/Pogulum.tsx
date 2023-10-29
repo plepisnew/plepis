@@ -1,6 +1,6 @@
 import { Project } from "./projects";
 import { Italic } from "@/components/aux/Italic";
-import { Technology, technologies } from "./technologies";
+import { technologies } from "./technologies";
 import pogulumImage from "@/assets/images/projects/pogulum/logo.png";
 import pogulumJavaImage from "@/assets/images/projects/pogulum/pogulum_java.png";
 import pogulumAspnetImage from "@/assets/images/projects/pogulum/pogulum_aspnet.png";
