@@ -7,15 +7,15 @@ import { FaExternalLinkAlt, FaChevronDown } from "react-icons/fa";
 import { Technology } from "./data/technologies";
 
 export const ProjectsPage: React.FC = () => {
-  const [expandedProjects, setExpandedProjects] = useState<number[]>([]);
+  const [expandedProjects, setExpandedProjects] = useState<string[]>([]);
 
-  const handleExpandProject = (index: number) => {
-    if (expandedProjects.includes(index)) {
+  const handleExpandProject = (title: string) => {
+    if (expandedProjects.includes(title)) {
       return setExpandedProjects(
-        expandedProjects.filter((_, projectIndex) => projectIndex !== index)
+        expandedProjects.filter((project) => project !== title)
       );
     }
-    setExpandedProjects([...expandedProjects, index]);
+    setExpandedProjects([...expandedProjects, title]);
   };
 
   const technologyRenderer: ArrayMap<Technology, ReactNode> = (technology) => (
@@ -26,14 +26,19 @@ export const ProjectsPage: React.FC = () => {
       className="flex items-center bg-primary-foreground/5 hover:bg-primary-foreground/10 transition-colors px-2 py-1 italic rounded-md"
     >
       #{technology.title}&nbsp;
-      <img src={technology.imageSrc} className="w-5" />
+      <img src={technology.imageSrc} className="w-5 rounded-md" />
     </a>
   );
 
-  const projectRenderer: ArrayMap<Project, ReactNode> = (
-    { title, url, imageSrc, Description, sourceUrl, subtitle, technologies },
-    index
-  ) => (
+  const projectRenderer: ArrayMap<Project, ReactNode> = ({
+    title,
+    url,
+    imageSrc,
+    Description,
+    sourceUrl,
+    subtitle,
+    technologies,
+  }) => (
     <div
       key={title}
       className={cn(
@@ -63,30 +68,30 @@ export const ProjectsPage: React.FC = () => {
         </div>
       </div>
       <div className="w-full h-[1px] bg-primary-boundary" />
-      <div className="flex gap-4">
+      <div className="flex gap-4 items-start">
         <a target="_blank" href={url} className="flex-grow">
           <img src={imageSrc} className="rounded-md" />
         </a>
-        <div className="flex flex-wrap items-start gap-2 basis-[260px] flex-shrink-0">
+        <div className="flex flex-wrap gap-2 basis-[260px] flex-shrink-0">
           {technologies.map(technologyRenderer)}
         </div>
       </div>
       <span
-        onClick={() => handleExpandProject(index)}
+        onClick={() => handleExpandProject(title)}
         className="cursor-pointer mx-auto inline-flex items-center gap-1.5 select-none pt-1"
       >
         Learn more{" "}
         <FaChevronDown
           size={14}
           className={cn(
-            expandedProjects.includes(index) && "rotate-180",
+            expandedProjects.includes(title) && "rotate-180",
             "transition-transform"
           )}
         />
       </span>
       <div
         className={cn(
-          expandedProjects.includes(index) ? "h-[600px]" : "h-0",
+          expandedProjects.includes(title) ? "h-[600px]" : "h-0",
           "transition-all max-h-[600px] overflow-y-scroll scrollbar-hide"
         )}
       >

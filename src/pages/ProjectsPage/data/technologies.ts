@@ -12,7 +12,8 @@ import planetscaleImage from "@/assets/images/tech/planetscale.png";
 import openidImage from "@/assets/images/tech/openid.webp";
 import threejsImage from "@/assets/images/tech/threejs.png";
 import javascriptImage from "@/assets/images/tech/javascript.png";
-
+import linearAlgebraImage from "@/assets/images/tech/linearalgebra.png";
+import handlebarsImage from "@/assets/images/tech/hbs.png";
 export type Technology = {
   url: string;
   title: string;
@@ -33,7 +34,9 @@ export type ValidTechnologies =
   | "planetscale"
   | "openid"
   | "threejs"
-  | "javascript";
+  | "javascript"
+  | "linearalgebra"
+  | "handlebars";
 
 export const technologies: Record<ValidTechnologies, Technology> = {
   docker: {
@@ -105,5 +108,15 @@ export const technologies: Record<ValidTechnologies, Technology> = {
     title: "javascript",
     url: "https://www.ecma-international.org/publications-and-standards/standards/ecma-262/",
     imageSrc: javascriptImage,
+  },
+  linearalgebra: {
+    title: "linearalgebra",
+    url: "https://en.wikipedia.org/wiki/Linear_algebra",
+    imageSrc: linearAlgebraImage,
+  },
+  handlebars: {
+    title: "hbs",
+    url: "https://handlebarsjs.com/",
+    imageSrc: handlebarsImage,
   },
 };
