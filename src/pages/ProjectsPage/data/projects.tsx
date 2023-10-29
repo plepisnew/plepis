@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { Technology } from "./technologies";
-import { pogulum } from "./Pogulum";
+import { pogulum } from "../projects/Pogulum";
+import { kuber } from "../projects/Kuber";
 
 export type Project = {
   url: string;
@@ -12,4 +13,4 @@ export type Project = {
   technologies: Technology[];
 };
 
-export const projects: Project[] = [pogulum];
+export const projects: Project[] = [pogulum, kuber];

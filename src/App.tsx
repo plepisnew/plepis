@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { headfulPages, headlessPages } from "./pages";
 import { HeaderLayout } from "./components/adhoc/HeaderLayout";
 import { ArrayMap } from "./utils/types";
-import { Page } from "./pages/Page";
+import { Page } from "./pages";
 
 const pageRenderer: ArrayMap<Page, ReactNode> = ({ Content, path }) => (
   <Route path={path} element={Content} key={path} />

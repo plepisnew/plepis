@@ -1,10 +1,10 @@
 import { ArrayMap } from "@/utils/types";
-import { projects } from "./projects";
-import { Project } from "./projects";
+import { projects } from "./data/projects";
+import { Project } from "./data/projects";
 import { ReactNode, useState } from "react";
 import { cn } from "@/utils/cn";
 import { FaExternalLinkAlt, FaChevronDown } from "react-icons/fa";
-import { Technology } from "./technologies";
+import { Technology } from "./data/technologies";
 
 export const ProjectsPage: React.FC = () => {
   const [expandedProjects, setExpandedProjects] = useState<number[]>([]);
@@ -37,7 +37,7 @@ export const ProjectsPage: React.FC = () => {
     <div
       key={title}
       className={cn(
-        "p-4 pb-0 w-full flex flex-col gap-3 overflow-hidden",
+        "p-4 pb-0 w-full flex flex-col gap-4 overflow-hidden",
         "bg-primary-darker border border-primary-boundary rounded-xl"
       )}
     >
@@ -46,7 +46,7 @@ export const ProjectsPage: React.FC = () => {
           <span>{title}: </span>
           <span className="text-primary-foreground/60">{subtitle}</span>
         </h1>
-        <div className="flex gap-3">
+        <div className="flex gap-4">
           {[
             { title: "Browse", href: url },
             { title: "Github", href: sourceUrl },
@@ -67,7 +67,7 @@ export const ProjectsPage: React.FC = () => {
         <a target="_blank" href={url} className="flex-grow">
           <img src={imageSrc} className="rounded-md" />
         </a>
-        <div className="flex flex-wrap gap-2 basis-[260px] flex-shrink-0">
+        <div className="flex flex-wrap items-start gap-2 basis-[260px] flex-shrink-0">
           {technologies.map(technologyRenderer)}
         </div>
       </div>
@@ -96,7 +96,7 @@ export const ProjectsPage: React.FC = () => {
   );
 
   return (
-    <div className="flex flex-col items-center w-[600px] md:w-[700px] lg:w-[800px] mx-auto">
+    <div className="flex flex-col gap-4 items-center w-[600px] md:w-[700px] lg:w-[800px] mx-auto">
       {projects.map(projectRenderer)}
     </div>
   );

@@ -10,6 +10,8 @@ import typescriptImage from "@/assets/images/tech/typescript.png";
 import nextuiImage from "@/assets/images/tech/nextui.png";
 import planetscaleImage from "@/assets/images/tech/planetscale.png";
 import openidImage from "@/assets/images/tech/openid.webp";
+import threejsImage from "@/assets/images/tech/threejs.png";
+import javascriptImage from "@/assets/images/tech/javascript.png";
 
 export type Technology = {
   url: string;
@@ -29,7 +31,9 @@ export type ValidTechnologies =
   | "typescript"
   | "nextui"
   | "planetscale"
-  | "openid";
+  | "openid"
+  | "threejs"
+  | "javascript";
 
 export const technologies: Record<ValidTechnologies, Technology> = {
   docker: {
@@ -91,5 +95,15 @@ export const technologies: Record<ValidTechnologies, Technology> = {
     title: "oidc",
     url: "https://openid.net/developers/how-connect-works/",
     imageSrc: openidImage,
+  },
+  threejs: {
+    title: "threejs",
+    url: "https://threejs.org/",
+    imageSrc: threejsImage,
+  },
+  javascript: {
+    title: "javascript",
+    url: "https://www.ecma-international.org/publications-and-standards/standards/ecma-262/",
+    imageSrc: javascriptImage,
   },
 };

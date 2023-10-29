@@ -1,6 +1,6 @@
-import { Project } from "./projects";
+import { Project } from "../data/projects";
 import { Italic } from "@/components/aux/Italic";
-import { technologies } from "./technologies";
+import { technologies } from "../data/technologies";
 import pogulumImage from "@/assets/images/projects/pogulum/logo.png";
 import pogulumJavaImage from "@/assets/images/projects/pogulum/pogulum_java.png";
 import pogulumAspnetImage from "@/assets/images/projects/pogulum/pogulum_aspnet.png";
@@ -62,6 +62,9 @@ const PogulumDescription: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-3 pb-3">
+      <h1 className="text-xl font-medium border-b border-b-primary-boundary pb-2">
+        Deliverables
+      </h1>
       <p>
         The main deliverables of <Bold>Pogulum</Bold> are:
       </p>
@@ -147,6 +150,9 @@ const PogulumDescription: React.FC = () => {
           are required to authenticate with Twitch via Code Flow).
         </li>
       </ul>
+      <h1 className="text-xl font-medium border-b border-b-primary-boundary pb-2">
+        Justification
+      </h1>
       <p>
         The spirit of Pogulum was born during a bootcamp, at the end of which
         participants were required to deliver a web app. At this point I had
@@ -197,6 +203,21 @@ const PogulumDescription: React.FC = () => {
           .
         </p>
       </div>
+      <h1 className="text-xl font-medium border-b border-b-primary-boundary pb-2">
+        The End Game
+      </h1>
+      <p>
+        Finally, having spent a significant amount of time learning web
+        technologies and frameworks and gaining practical experience, I was
+        ready to give this project one last final shot. I wanted to see how far
+        I could get in creating a full-blown production-ready app with all the
+        necessary UX considerations (localization, theming, accessibility,
+        security, etc).
+      </p>
+      <p>
+        The current iteration of Pogulum is currently in development and has a
+        very ambitious future.
+      </p>
     </div>
   );
 };
