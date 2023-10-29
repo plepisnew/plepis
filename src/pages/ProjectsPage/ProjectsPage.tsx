@@ -3,7 +3,7 @@ import { projects } from "./projects";
 import { Project } from "./projects";
 import { ReactNode, useState } from "react";
 import { cn } from "@/utils/cn";
-import { FaExternalLinkAlt, FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { FaExternalLinkAlt, FaChevronDown } from "react-icons/fa";
 import { Technology } from "./technologies";
 
 export const ProjectsPage: React.FC = () => {
