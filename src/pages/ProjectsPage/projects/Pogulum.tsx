@@ -68,7 +68,7 @@ const PogulumDescription: React.FC = () => {
       <p>
         The main deliverables of <Bold>Pogulum</Bold> are:
       </p>
-      <ul className="list-disc pl-4 flex flex-col gap-4">
+      <ul className="list-disc pl-4 pr-2 flex flex-col gap-4">
         <li>
           To provide users with a thin wrapper around the Twitch API, which
           normally allows querying for clips based on either a user{" "}

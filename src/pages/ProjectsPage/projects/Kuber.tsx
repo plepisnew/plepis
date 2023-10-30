@@ -56,8 +56,8 @@ const Kuber: React.FC = () => {
         7x7 cubes every second, was gone.
       </p>
       <p>
-        Another problem is the way I modeled the cube, namely as a 3x3 matrix of
-        poorly chosen objects:
+        Another problem is the way I modeled the cube, namely as a 3x3x3 matrix
+        of poorly chosen objects:
       </p>
       <Code>
         class MatrixEntry &#123; <br />
