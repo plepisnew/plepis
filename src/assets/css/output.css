@@ -627,10 +627,6 @@ video {
   height: 100%;
 }
 
-.h-auto {
-  height: auto;
-}
-
 .max-h-\[600px\] {
   max-height: 600px;
 }
@@ -731,10 +727,6 @@ video {
 
 .items-center {
   align-items: center;
-}
-
-.justify-start {
-  justify-content: flex-start;
 }
 
 .justify-between {
@@ -915,20 +907,12 @@ video {
   padding-left: 1rem;
 }
 
-.pt-1 {
-  padding-top: 0.25rem;
-}
-
-.pl-2 {
-  padding-left: 0.5rem;
-}
-
-.pl-1 {
-  padding-left: 0.25rem;
-}
-
 .pr-2 {
   padding-right: 0.5rem;
+}
+
+.pt-1 {
+  padding-top: 0.25rem;
 }
 
 .font-mono {

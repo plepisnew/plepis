@@ -1,6 +1,12 @@
 import { cn } from "@/utils/cn";
 import { ArrayMap } from "@/utils/types";
-import React, { ReactNode, useEffect, useRef, useState } from "react";
+import React, {
+  ReactNode,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
 export const headerHeight = 70;
@@ -56,10 +62,15 @@ export const HeaderLayout: React.FC = () => {
   );
 
   useEffect(() => {
-    const children = [...navItemContainerRef.current!.children];
-    const rects = children.map((node) => node.getBoundingClientRect());
+    const initHeader = () => {
+      const children = [...navItemContainerRef.current!.children];
+      const rects = children.map((node) => node.getBoundingClientRect());
+      setNavItemRects(rects);
+    };
 
-    setNavItemRects(rects);
+    const timeoutId = setTimeout(initHeader, 10);
+
+    return () => clearTimeout(timeoutId);
   }, []);
 
   const HoveringSlider = navItemRects && (

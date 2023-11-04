@@ -1,7 +1,7 @@
 import { headerHeight } from "@/components/adhoc/HeaderLayout";
 import { UseCanvas, useCanvas } from "@/hooks/useCanvas";
 import { useWindowSize } from "@/hooks/useWindowSize";
-import { drawBubbles, useBubbles } from "./useBubbles";
+import { useBubbles } from "./useBubbles";
 import { useAudioPlayer } from "./AudioPlayer";
 import { useCallback, useRef } from "react";
 
@@ -9,7 +9,10 @@ const TOTAL_FRAMES = 1800;
 
 export const HomePage: React.FC = () => {
   const frameRef = useRef<number>(0);
-  const { getBubbles } = useBubbles({ count: 400, frames: TOTAL_FRAMES });
+  const { getBubbles, drawBubbles } = useBubbles({
+    count: 400,
+    frames: TOTAL_FRAMES,
+  });
   const { AudioPlayer, playing } = useAudioPlayer({
     frameRef,
     frames: TOTAL_FRAMES,
@@ -24,7 +27,7 @@ export const HomePage: React.FC = () => {
 
       if (playing) frameRef.current!++;
     },
-    [playing, getBubbles]
+    [playing, getBubbles, drawBubbles]
   );
 
   const { width, height } = useWindowSize();

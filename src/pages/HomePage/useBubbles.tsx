@@ -10,6 +10,10 @@ export type Bubble = {
 
 export type UseBubbles = (options: { count?: number; frames?: number }) => {
   getBubbles: (frame: number, frames: number) => Bubble[];
+  drawBubbles: (options: {
+    bubbles: Bubble[];
+    ctx: CanvasRenderingContext2D;
+  }) => void;
 };
 
 export const useBubbles: UseBubbles = ({ count = 1000, frames = 600 }) => {
@@ -48,22 +52,28 @@ export const useBubbles: UseBubbles = ({ count = 1000, frames = 600 }) => {
       }))
       .filter(({ y, r }) => y + r >= 0 && y - r <= window.innerHeight);
 
-  return { getBubbles };
-};
+  const drawBubbles = (options: {
+    bubbles: Bubble[];
+    ctx: CanvasRenderingContext2D;
+  }) => {
+    const { ctx, bubbles } = options;
 
-export const drawBubbles = (options: {
-  bubbles: Bubble[];
-  ctx: CanvasRenderingContext2D;
-}) => {
-  const { ctx, bubbles } = options;
+    ctx.fillStyle = "white";
 
-  ctx.fillStyle = "white";
+    for (const bubble of bubbles) {
+      ctx.beginPath();
+      ctx.arc(
+        bubble.x,
+        window.innerHeight - bubble.y,
+        bubble.r,
+        0,
+        2 * Math.PI
+      );
 
-  for (const bubble of bubbles) {
-    ctx.beginPath();
-    ctx.arc(bubble.x, window.innerHeight - bubble.y, bubble.r, 0, 2 * Math.PI);
+      ctx.globalAlpha = bubble.alpha;
+      ctx.fill();
+    }
+  };
 
-    ctx.globalAlpha = bubble.alpha;
-    ctx.fill();
-  }
+  return { getBubbles, drawBubbles };
 };
