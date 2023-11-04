@@ -30,22 +30,25 @@ export const ProjectsPage: React.FC = () => {
     </a>
   );
 
-  const projectRenderer: ArrayMap<Project, ReactNode> = ({
-    title,
-    url,
-    imageSrc,
-    Description,
-    sourceUrl,
-    subtitle,
-    technologies,
-  }) => (
+  const projectRenderer: ArrayMap<Project, ReactNode> = (
+    { title, url, imageSrc, Description, sourceUrl, subtitle, technologies },
+    index
+  ) => (
     <div
       key={title}
       className={cn(
-        "p-4 pb-0 w-full flex flex-col gap-4 overflow-hidden",
+        "p-4 pb-0 w-full relative flex flex-col gap-4 ",
         "bg-primary-darker border border-primary-boundary rounded-xl"
       )}
     >
+      {/* <div
+        className={cn(
+          "absolute left-0 top-0 w-12 h-12 grid place-items-center text-xl font-medium -translate-x-[calc(100%_+_10px)]",
+          "border border-primary-boundary rounded-xl bg-primary-darker"
+        )}
+      >
+        {index + 1}
+      </div> */}
       <div className="flex justify-between">
         <h1 className="text-lg">
           <span>{title}: </span>

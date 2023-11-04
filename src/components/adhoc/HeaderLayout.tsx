@@ -1,12 +1,6 @@
 import { cn } from "@/utils/cn";
 import { ArrayMap } from "@/utils/types";
-import React, {
-  ReactNode,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
 export const headerHeight = 70;
@@ -51,10 +45,7 @@ export const HeaderLayout: React.FC = () => {
           setHoveredIndex(index);
           setHoveringHeader(true);
         }}
-        className={cn(
-          "px-3 py-2 rounded-lg"
-          // pathname === path && "bg-primary-foreground/20"
-        )}
+        className={cn("px-3 py-2 rounded-lg")}
       >
         {label}
       </Link>
@@ -68,7 +59,7 @@ export const HeaderLayout: React.FC = () => {
       setNavItemRects(rects);
     };
 
-    const timeoutId = setTimeout(initHeader, 10);
+    const timeoutId = setTimeout(initHeader, 100);
 
     return () => clearTimeout(timeoutId);
   }, []);
