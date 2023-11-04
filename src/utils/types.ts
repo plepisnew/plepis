@@ -15,3 +15,7 @@ export type ArrayForEach<TSource> = (
   index: number,
   array: TSource[]
 ) => void;
+
+export type PropsWithClassName = {
+  className?: string;
+};

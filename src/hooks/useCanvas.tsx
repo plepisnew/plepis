@@ -12,15 +12,17 @@ type CanvasProps = DetailedHTMLProps<
   HTMLCanvasElement
 >;
 
+export type AnimateFn = (renderContext: {
+  time: number;
+  frame: number;
+  ctx: CanvasRenderingContext2D;
+}) => void;
+
 export type UseCanvas = (options: {
   clearBetweenFrames?: boolean;
   width: number;
   height: number;
-  animate: (renderContext: {
-    time: number;
-    frame: number;
-    ctx: CanvasRenderingContext2D;
-  }) => void;
+  animate: AnimateFn;
   canvasProps?: Partial<Omit<CanvasProps, "width" | "height">>;
 }) => {
   Canvas: ReactNode;

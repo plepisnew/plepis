@@ -2,6 +2,11 @@ import { cn } from "@/utils/cn";
 import { ArrayMap } from "@/utils/types";
 import React, { ReactNode, useEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import { Background } from "./Background";
+import { homePage } from "@/pages/HomePage";
+import { projectsPage } from "@/pages/ProjectsPage";
+import { aboutPage } from "@/pages/AboutPage";
+import { backgroundPage } from "@/pages/BackgroundPage";
 
 export const headerHeight = 70;
 
@@ -9,16 +14,20 @@ type NavItem = { path: string; label: string };
 
 const headerNavItems: NavItem[] = [
   {
-    path: "/",
+    path: homePage.path,
     label: "Whatever this is",
   },
   {
-    path: "/projects",
+    path: projectsPage.path,
     label: "Projects",
   },
   {
-    path: "/about",
+    path: aboutPage.path,
     label: "About me",
+  },
+  {
+    path: backgroundPage.path,
+    label: "???",
   },
 ];
 
@@ -125,11 +134,27 @@ export const HeaderLayout: React.FC = () => {
       </header>
       <div
         className={cn(
-          "min-h-screen container mx-auto py-8",
-          "text-page-foreground"
+          "container mx-auto pb-8",
+          "text-page-foreground",
+          "min-h-screen "
         )}
-        style={{ paddingTop: `calc(${headerHeight}px + 2rem)` }}
+        style={{
+          paddingTop: `calc(${headerHeight}px + 2rem)`,
+        }}
       >
+        <Background
+          options={{
+            shouldFill: true,
+            shouldStroke: true,
+            shouldUpdate: true,
+            shouldDraw: true,
+            cellSize: 30,
+            gapX: 3,
+            gapY: 3,
+            strongOpacityCeiling: 0.02,
+            strongOpacityFloor: 0.03,
+          }}
+        />
         <Outlet />
       </div>
     </React.Fragment>

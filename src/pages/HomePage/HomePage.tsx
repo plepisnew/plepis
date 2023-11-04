@@ -7,6 +7,8 @@ import { useCallback, useRef } from "react";
 
 const TOTAL_FRAMES = 1800;
 
+// TODO add speed option
+// TODO add floating text
 export const HomePage: React.FC = () => {
   const frameRef = useRef<number>(0);
   const { getBubbles, drawBubbles } = useBubbles({
@@ -30,10 +32,10 @@ export const HomePage: React.FC = () => {
     [playing, getBubbles, drawBubbles]
   );
 
-  const { width, height } = useWindowSize();
+  const [windowWidth, windowHeight] = useWindowSize();
   const { Canvas } = useCanvas({
-    width,
-    height: height - headerHeight,
+    width: windowWidth,
+    height: windowHeight - headerHeight,
     animate,
     clearBetweenFrames: false,
     canvasProps: {

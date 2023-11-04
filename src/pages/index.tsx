@@ -1,4 +1,5 @@
 import { aboutPage } from "./AboutPage";
+import { backgroundPage } from "./BackgroundPage";
 import { homePage } from "./HomePage";
 import { projectsPage } from "./ProjectsPage";
 import { ReactNode } from "react";
@@ -9,7 +10,7 @@ export type Page = {
   withHeader?: boolean;
 };
 
-const pages: Page[] = [homePage, projectsPage, aboutPage];
+const pages: Page[] = [homePage, projectsPage, aboutPage, backgroundPage];
 
 export const headfulPages = pages.filter((page) => page.withHeader);
 

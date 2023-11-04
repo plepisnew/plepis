@@ -2,14 +2,21 @@ import { useEffect, useState } from "react";
 
 type Size = { width: number; height: number };
 
-export type UseWindowSize = () => Size;
+export type UseWindowSize = (
+  useScrollHeight?: boolean
+) => [Size["width"], Size["height"]];
 
-export const useWindowSize = () => {
+export const useWindowSize: UseWindowSize = (useScrollHeight = false) => {
   const [size, setSize] = useState<Size>({ width: 0, height: 0 });
 
   useEffect(() => {
     const resizeHandler = () => {
-      setSize({ width: window.innerWidth, height: window.innerHeight });
+      setSize({
+        width: window.innerWidth,
+        height: useScrollHeight
+          ? document.body.scrollHeight
+          : window.innerHeight,
+      });
     };
 
     window.addEventListener("resize", resizeHandler);
@@ -19,5 +26,5 @@ export const useWindowSize = () => {
     return () => window.removeEventListener("resize", resizeHandler);
   }, []);
 
-  return size;
+  return [size.width, size.height];
 };
