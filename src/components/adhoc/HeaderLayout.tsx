@@ -3,10 +3,10 @@ import { ArrayMap } from "@/utils/types";
 import React, { ReactNode, useEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { Background } from "./Background";
-import { homePage } from "@/pages/HomePage";
-import { projectsPage } from "@/pages/ProjectsPage";
-import { aboutPage } from "@/pages/AboutPage";
-import { backgroundPage } from "@/pages/BackgroundPage";
+// import { homePage } from "@/pages/HomePage";
+// import { projectsPage } from "@/pages/ProjectsPage";
+// import { aboutPage } from "@/pages/AboutPage";
+// import { backgroundPage } from "@/pages/BackgroundPage";
 
 export const headerHeight = 70;
 
@@ -14,19 +14,23 @@ type NavItem = { path: string; label: string };
 
 const headerNavItems: NavItem[] = [
   {
-    path: homePage.path,
+    // path: homePage.path,
+    path: "/",
     label: "Whatever this is",
   },
   {
-    path: projectsPage.path,
+    // path: projectsPage.path,
+    path: "/projects",
     label: "Projects",
   },
   {
-    path: aboutPage.path,
+    // path: aboutPage.path,
+    path: "/about",
     label: "About me",
   },
   {
-    path: backgroundPage.path,
+    // path: backgroundPage.path,
+    path: "/background",
     label: "???",
   },
 ];
