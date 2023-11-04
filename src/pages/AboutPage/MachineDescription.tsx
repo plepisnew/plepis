@@ -27,7 +27,7 @@ export const MachineDescription: React.FC<PropsWithClassName> = ({
         theme="monokai"
         displayDataTypes={false}
         displayObjectSize={false}
-        displayArrayKey={false}
+        // displayArrayKey={false}
         enableClipboard={false}
         quotesOnKeys={false}
       />

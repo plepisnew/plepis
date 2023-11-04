@@ -30,10 +30,15 @@ export const ProjectsPage: React.FC = () => {
     </a>
   );
 
-  const projectRenderer: ArrayMap<Project, ReactNode> = (
-    { title, url, imageSrc, Description, sourceUrl, subtitle, technologies },
-    index
-  ) => (
+  const projectRenderer: ArrayMap<Project, ReactNode> = ({
+    title,
+    url,
+    imageSrc,
+    Description,
+    sourceUrl,
+    subtitle,
+    technologies,
+  }) => (
     <div
       key={title}
       className={cn(
