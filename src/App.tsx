@@ -5,6 +5,7 @@ import { headfulPages, headlessPages } from "./pages";
 import { HeaderLayout } from "./components/adhoc/HeaderLayout";
 import { ArrayMap } from "./utils/types";
 import { Page } from "./pages";
+import { BackgroundProvider } from "./components/contexts/BackgroundContext";
 
 const pageRenderer: ArrayMap<Page, ReactNode> = ({ Content, path }) => (
   <Route path={path} element={Content} key={path} />
@@ -22,7 +23,7 @@ const Router: React.FC = () => (
 );
 
 const Providers: React.FC<PropsWithChildren> = ({ children }) => (
-  <React.Fragment>{children}</React.Fragment>
+  <BackgroundProvider>{children}</BackgroundProvider>
 );
 
 export const App: React.FC = () => (

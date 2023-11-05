@@ -35,6 +35,8 @@ const headerNavItems: NavItem[] = [
   },
 ];
 
+const backgroundExcludedPaths = ["/", "/background"];
+
 export const HeaderLayout: React.FC = () => {
   const { pathname } = useLocation();
   const [hoveredIndex, setHoveredIndex] = useState<number>();
@@ -146,19 +148,7 @@ export const HeaderLayout: React.FC = () => {
           paddingTop: `calc(${headerHeight}px + 2rem)`,
         }}
       >
-        <Background
-          options={{
-            shouldFill: true,
-            shouldStroke: true,
-            shouldUpdate: true,
-            shouldDraw: true,
-            cellSize: 30,
-            gapX: 3,
-            gapY: 3,
-            strongOpacityCeiling: 0.02,
-            strongOpacityFloor: 0.03,
-          }}
-        />
+        {!backgroundExcludedPaths.includes(pathname) && <Background />}
         <Outlet />
       </div>
     </React.Fragment>

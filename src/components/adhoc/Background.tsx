@@ -1,58 +1,20 @@
-import { AnimateFn, useCanvas } from "@/hooks/useCanvas";
+import { AnimateFn, UseCanvas, useCanvas } from "@/hooks/useCanvas";
 import { useWindowSize } from "@/hooks/useWindowSize";
-import { random } from "@/utils/random";
 import { useCallback } from "react";
 import { headerHeight } from "./HeaderLayout";
-import { useLocation } from "react-router-dom";
-
-export type BackgroundOptions = {
-  cellSize: number;
-  gapX: number;
-  gapY: number;
-  frameSkip: number;
-  spiralGap: number;
-  shouldFill: boolean;
-  shouldStroke: boolean;
-  shouldUpdate: boolean;
-  shouldDraw: boolean;
-
-  weakOpacity: number;
-  strongOpacityFloor: number;
-  strongOpacityCeiling: number;
-};
+import { useBackground } from "../contexts/BackgroundContext";
 
 export type BackgroundProps = {
-  options?: Partial<BackgroundOptions>;
+  customSize?: { width: number; height: number };
 };
 
-export const defaultBackgroundOptions: BackgroundOptions = {
-  cellSize: 30,
-  gapX: 4,
-  gapY: 4,
-  frameSkip: 1,
-  spiralGap: 1,
-  shouldDraw: true,
-  shouldUpdate: true,
-  shouldFill: false,
-  shouldStroke: true,
-  weakOpacity: 0.2,
-  strongOpacityFloor: 0.3,
-  strongOpacityCeiling: 0.3,
-};
-
-export const Background: React.FC<BackgroundProps> = ({
-  options: _options,
-}) => {
+export const Background: React.FC<BackgroundProps> = ({ customSize }) => {
   const [windowWidth, windowHeight] = useWindowSize();
-  const { pathname } = useLocation();
+
+  const { setOptions: _, ...options } = useBackground();
 
   const animate: AnimateFn = useCallback(
     ({ frame, ctx }) => {
-      const options: BackgroundOptions = {
-        ...defaultBackgroundOptions,
-        ..._options,
-      };
-
       const {
         cellSize,
         shouldFill,
@@ -61,22 +23,21 @@ export const Background: React.FC<BackgroundProps> = ({
         gapX,
         gapY,
         spiralGap,
-        strongOpacityCeiling,
-        strongOpacityFloor,
+        strongOpacity,
         weakOpacity,
         shouldDraw,
         shouldUpdate,
       } = options;
 
-      if (pathname === "/" || !shouldDraw) {
+      if (!shouldDraw) {
         return ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
       }
 
       if (!shouldUpdate) return;
 
-      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
       if (frame % frameSkip === 0) {
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
         const rows = Math.floor(windowHeight / cellSize) + 1;
         const columns = Math.floor(windowWidth / cellSize) + 1;
 
@@ -93,7 +54,7 @@ export const Background: React.FC<BackgroundProps> = ({
             ];
             ctx.globalAlpha =
               (row + column - frame) % spiralGap === 0
-                ? random(strongOpacityFloor, strongOpacityCeiling)
+                ? strongOpacity
                 : weakOpacity;
 
             ctx.beginPath();
@@ -104,17 +65,23 @@ export const Background: React.FC<BackgroundProps> = ({
         }
       }
     },
-    [windowWidth, windowHeight, _options, pathname]
+    [options, windowWidth, windowHeight]
   );
 
+  const [canvasWidth, canvasHeight] = [
+    customSize ? customSize.width : windowWidth,
+    customSize ? customSize.height : windowHeight - headerHeight,
+  ];
+  const canvasProps: Parameters<UseCanvas>[0]["canvasProps"] = customSize
+    ? {}
+    : { style: { position: "fixed", top: headerHeight, left: 0, zIndex: -1 } };
+
   const { Canvas } = useCanvas({
-    width: windowWidth,
-    height: windowHeight - headerHeight,
+    width: canvasWidth,
+    height: canvasHeight,
     animate,
     clearBetweenFrames: false,
-    canvasProps: {
-      style: { position: "fixed", top: headerHeight, left: 0, zIndex: -1 },
-    },
+    canvasProps,
   });
 
   return Canvas;
